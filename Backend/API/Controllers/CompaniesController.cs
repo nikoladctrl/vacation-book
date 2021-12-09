@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BussinessLayer.Services.Companies;
+
+namespace API.Controllers
+{
+    public class CompaniesController : BaseApiController
+    {
+        private readonly ICompanyService _companyService;
+        public CompaniesController(ICompanyService companyService)
+        {
+            _companyService = companyService;
+        }
+    }
+}

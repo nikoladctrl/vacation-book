@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EFCore.Context;
+using EFCore.Repositories.Companies;
+using EFCore.Repositories.Departments;
+using EFCore.Repositories.Employees;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +20,10 @@ namespace EFCore
         {
             
             services.AddDbContext<DataContext>(dboptions, ServiceLifetime.Transient);
+
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             
             return services;
         }

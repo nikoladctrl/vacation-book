@@ -1,7 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using BussinessLayer.Mappings;
+using BussinessLayer.Services.Companies;
+using BussinessLayer.Services.Departments;
+using BussinessLayer.Services.Employees;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BussinessLayer
@@ -10,6 +12,19 @@ namespace BussinessLayer
     {
         public static IServiceCollection AddBussinessLayer(this IServiceCollection services)
         {
+            var profileList = new List<Profile>();
+
+            profileList.Add(new MappingCompanies());
+            profileList.Add(new MappingDepartments());
+            profileList.Add(new MappingEmployees());
+
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+
+            services.AddAutoMapper(c => c.AddProfiles(profileList), typeof(List<Profile>));
+            
+            
             return services;
         }
     }
