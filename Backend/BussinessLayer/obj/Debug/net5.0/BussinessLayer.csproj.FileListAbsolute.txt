@@ -1,0 +1,17 @@
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\BussinessLayer.deps.json
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\BussinessLayer.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\ref\BussinessLayer.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\BussinessLayer.pdb
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\Core.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\EFCore.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\EFCore.pdb
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\bin\Debug\net5.0\Core.pdb
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.csproj.AssemblyReference.cache
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.AssemblyInfoInputs.cache
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.AssemblyInfo.cs
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.csproj.CopyComplete
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\ref\BussinessLayer.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\BussinessLayer\obj\Debug\net5.0\BussinessLayer.pdb
