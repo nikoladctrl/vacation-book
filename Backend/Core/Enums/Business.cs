@@ -1,6 +1,6 @@
 namespace Core.Enums
 {
-    public enum Bussiness
+    public enum Business
     {
         RESTAURANTS_AND_FOOD_SERVICE,
         JANITORIAL_SERVICE,

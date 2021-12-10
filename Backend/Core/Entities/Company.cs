@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Enums;
 
 namespace Core.Entities
@@ -17,7 +14,7 @@ namespace Core.Entities
         public string Name { get; set; } 
 
         [Required] 
-        public Bussiness Bussiness { get; set; } 
+        public Business Business { get; set; } 
  
         public string Address { get; set; }
         
