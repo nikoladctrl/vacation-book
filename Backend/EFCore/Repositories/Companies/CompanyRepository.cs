@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities;
 using EFCore.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCore.Repositories.Companies
 {
@@ -13,5 +15,39 @@ namespace EFCore.Repositories.Companies
         {
             _context = context;
         }
+
+        public async Task<Company> CreateCompany(Company company)
+        {
+            _context.Companies.Add(company);
+            await _context.SaveChangesAsync();
+            
+            return company;
+        }
+
+        public async Task<Company> UpdateCompany(Company companyToUpdate)
+        {
+            _context.Companies.Update(companyToUpdate);
+            await _context.SaveChangesAsync();
+
+            return companyToUpdate;
+        }
+        
+        public async Task DeleteCompany(int id)
+        {
+            var company = await GetCompany(id);
+            _context.Companies.Remove(company);
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task<List<Company>> GetCompanies()
+        {
+            return await _context.Companies.ToListAsync();
+        }
+
+        public async Task<Company> GetCompany(int id)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
     }
 }

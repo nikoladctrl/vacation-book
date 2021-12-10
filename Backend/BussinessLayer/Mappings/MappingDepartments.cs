@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.DTOs.Departments;
+using Core.Entities;
 
 namespace BussinessLayer.Mappings
 {
@@ -10,6 +12,9 @@ namespace BussinessLayer.Mappings
     {
         public MappingDepartments()
         {
+            CreateMap<CreateDepartmentDto, Department>();
+            CreateMap<UpdateDepartmentDto, Department>();
+            CreateMap<Department, DepartmentDto>().ReverseMap();
         }
     }
 }
