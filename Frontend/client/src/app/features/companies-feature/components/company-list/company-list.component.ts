@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Company } from 'src/app/models/company.model';
+import { AppState } from 'src/app/store';
+import * as fromCompanySelectors from '../../state/company.selectors';
 
 @Component({
   selector: 'app-company-list',
@@ -7,9 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyListComponent implements OnInit {
 
-  constructor() { }
+  companies$: Observable<Company[]>;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.companies$ = this.store.select(fromCompanySelectors.selectCompanies);
   }
 
 }

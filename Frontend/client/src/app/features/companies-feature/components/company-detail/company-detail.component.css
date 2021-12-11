@@ -1,0 +1,13 @@
+
+
+.detail-container {
+    min-height: 400px;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+hr {
+    width: 97%;
+}

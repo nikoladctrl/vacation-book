@@ -14,6 +14,9 @@ import { StoreModule } from '@ngrx/store';
 import * as fromCompany from './state/company.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CompanyEffects } from './state/company.effects';
+import { CompanyDetailTabHeaderComponent } from './components/company-detail-tab-header/company-detail-tab-header.component';
+import { CompanyDetailEmployeesComponent } from './components/company-detail-employees/company-detail-employees.component';
+import { CompanyDetailDepartmentsComponent } from './components/company-detail-departments/company-detail-departments.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { CompanyEffects } from './state/company.effects';
     CompanyListComponent,
     CompanyNewComponent,
     CompanyEditComponent,
-    CompanySearchComponent
+    CompanySearchComponent,
+    CompanyDetailTabHeaderComponent,
+    CompanyDetailEmployeesComponent,
+    CompanyDetailDepartmentsComponent,
   ],
   imports: [
     CommonModule,
