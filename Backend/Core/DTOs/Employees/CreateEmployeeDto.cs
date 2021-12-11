@@ -27,8 +27,6 @@ namespace Core.DTOs.Employees
         
         public DateTime? HolidaysEndOn { get; set; }
         
-        public bool? OnVacation { get; set; }
-        
         public int? DepartmentId { get; set; }
     }
 }
