@@ -12,8 +12,9 @@ namespace Core.DTOs.Departments
     {
         [Required, StringLength(50, MinimumLength = 2)]
         public String Name { get; set; }
+
+        [Required]
         public int CompanyId { get; set; }
-        public int? NumberOfEmployees { get; set; }
         public ICollection<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
     }
 }

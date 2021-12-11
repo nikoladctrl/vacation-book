@@ -66,5 +66,15 @@ namespace API.Controllers
                 NotFound() :
                 Ok(employee);
         }
+
+        [HttpGet("{companyId}")]
+        public async Task<ActionResult<List<CompanyViewEmployeeDto>>> GetEmployeesByCompanyId(int companyId)
+        {
+            var employees = await _employeeService.GetEmployeesByCompanyId(companyId);
+
+            return (employees == null) ? 
+                NotFound() :
+                Ok(employees);
+        }
     }
 }

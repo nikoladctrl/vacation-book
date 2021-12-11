@@ -13,5 +13,6 @@ namespace BussinessLayer.Services.Departments
         Task DeleteDepartment(int id);
         Task<List<DepartmentDto>> GetDepartments();
         Task<DepartmentDto> GetDepartment(int id);
+        Task<List<DepartmentDto>> GetDepartmentsByCompanyId(int companyId);
     }
 }

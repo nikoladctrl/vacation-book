@@ -44,5 +44,10 @@ namespace BussinessLayer.Services.Employees
         {
             return _mapper.Map<EmployeeDto>(await _employeeRepository.GetEmployee(id));
         }
+
+        public async Task<List<CompanyViewEmployeeDto>> GetEmployeesByCompanyId(int companyId)
+        {
+            return _mapper.Map<List<CompanyViewEmployeeDto>>(await _employeeRepository.GetEmployeesByCompanyId(companyId));
+        }
     }
 }

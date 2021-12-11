@@ -47,6 +47,9 @@ namespace BussinessLayer.Services.Departments
             return _mapper.Map<DepartmentDto>(await _departmentRepository.GetDepartment(id));
         }
 
-
+        public async Task<List<DepartmentDto>> GetDepartmentsByCompanyId(int companyId)
+        {
+            return _mapper.Map<List<DepartmentDto>>(await _departmentRepository.GetDepartmentsByCompanyId(companyId));
+        }
     }
 }

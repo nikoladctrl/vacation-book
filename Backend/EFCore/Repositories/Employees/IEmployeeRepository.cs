@@ -13,5 +13,6 @@ namespace EFCore.Repositories.Employees
         Task DeleteEmployee(int id);
         Task<List<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int id);
+        Task<List<Employee>> GetEmployeesByCompanyId(int companyId);
     }
 }

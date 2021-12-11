@@ -68,5 +68,15 @@ namespace API.Controllers
                 NotFound() :
                 Ok(department);
         }
+
+        [HttpGet("{companyId}")]
+        public async Task<ActionResult<List<CompanyViewDepartmentDto>>> GetDepartmentsByCompanyId(int companyId)
+        {
+            var departments = await _departmentService.GetDepartmentsByCompanyId(companyId);
+
+            return (departments == null) ?
+                NotFound() :
+                Ok(departments);
+        }
     }
 }

@@ -21,16 +21,14 @@ namespace Core.DTOs.Employees
         public DateTime BirthDate { get; set; }
 
         [Required]
-        public string YearsOfService { get; set; }
+        public int YearsOfService { get; set; }
 
         public DateTime? HolidaysStartOn { get; set; }
         
         public DateTime? HolidaysEndOn { get; set; }
         
-        public bool OnVacation { get; set; }
+        public bool? OnVacation { get; set; }
         
         public int? DepartmentId { get; set; }
-
-        public int DaysOfPerYear { get; set; }
     }
 }

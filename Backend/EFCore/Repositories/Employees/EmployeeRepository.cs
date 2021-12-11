@@ -49,5 +49,12 @@ namespace EFCore.Repositories.Employees
         {
             return await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
         }
+
+        public async Task<List<Employee>> GetEmployeesByCompanyId(int companyId)
+        {
+            return await _context.Employees
+                .Include(e => e.Department)
+                .Where(e => e.Department.CompanyId == companyId).ToListAsync();
+        }
     }
 }

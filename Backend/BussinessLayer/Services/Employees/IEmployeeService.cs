@@ -14,5 +14,6 @@ namespace BussinessLayer.Services.Employees
         Task DeleteEmployee(int id);
         Task<List<EmployeeDto>> GetEmployees();
         Task<EmployeeDto> GetEmployee(int id);
+        Task<List<CompanyViewEmployeeDto>> GetEmployeesByCompanyId(int companyId);
     }
 }

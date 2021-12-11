@@ -43,14 +43,17 @@ namespace EFCore.Repositories.Departments
         
         public async Task<List<Department>> GetDepartments()
         {
-            return await _context.Departments.ToListAsync();
+            return await _context.Departments.Include(d => d.Employees.Count).ToListAsync();
         }
 
         public async Task<Department> GetDepartment(int id)
         {
-            return await _context.Departments.FirstOrDefaultAsync(d => d.Id == id); 
+            return await _context.Departments.Include(d => d.Employees).FirstOrDefaultAsync(d => d.Id == id); 
         }
 
-
+        public async Task<List<Department>> GetDepartmentsByCompanyId(int companyId)
+        {
+            return await _context.Departments.Include(d => d.Employees).Where(d => d.CompanyId == companyId).ToListAsync();
+        }
     }
 }

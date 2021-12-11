@@ -14,5 +14,6 @@ namespace EFCore.Repositories.Departments
         Task DeleteDepartment(int id);
         Task<List<Department>> GetDepartments();
         Task<Department> GetDepartment(int id);
+        Task<List<Department>> GetDepartmentsByCompanyId(int companyId);
     }
 }
