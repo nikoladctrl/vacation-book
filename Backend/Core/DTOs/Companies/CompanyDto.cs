@@ -11,7 +11,7 @@ namespace Core.DTOs.Companies
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Business Business { get; set; } 
+        public string Business { get; set; } 
  
         public string Address { get; set; }
         

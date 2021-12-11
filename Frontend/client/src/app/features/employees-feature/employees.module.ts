@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +24,8 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
   ],
   imports: [
     CommonModule,
-    EmployeesRoutingModule
+    EmployeesRoutingModule,
+    RouterModule
   ]
 })
 export class EmployeesModule { }

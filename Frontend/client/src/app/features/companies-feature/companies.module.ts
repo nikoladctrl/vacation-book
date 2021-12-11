@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,7 +24,8 @@ import { CompanySearchComponent } from './components/company-search/company-sear
   ],
   imports: [
     CommonModule,
-    CompaniesRoutingModule
+    CompaniesRoutingModule, 
+    RouterModule,
   ]
 })
 export class CompaniesModule { }

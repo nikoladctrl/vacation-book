@@ -10,7 +10,7 @@ namespace Core.DTOs.Departments
     public class DepartmentDto
     {
         public int Id { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
         public int CompanyId { get; set; }
         public CompanyDto CompanyDto { get; set; }
         public int NumberOfEmployees { get; set; }

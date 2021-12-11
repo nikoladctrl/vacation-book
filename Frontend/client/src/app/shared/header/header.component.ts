@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Link } from 'src/app/models/link.model';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  links: Link[] = [
+    { name: 'Companies', url: 'companies' },
+    { name: 'Departments', url: 'departments' },
+    { name: 'Employees', url: 'employees' },
+  ];
+ 
   constructor() { }
 
   ngOnInit(): void {

@@ -20,8 +20,6 @@ namespace Core.Entities
         
         [Required, StringLength(30, MinimumLength = 2)]
         public string Country { get; set; }
-
-        public int NumberOfDepartments { get; set; }
         
         public ICollection<Department> Departments { get; set; } = new List<Department>();
     }

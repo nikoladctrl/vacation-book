@@ -25,7 +25,7 @@ namespace EFCore.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Bussiness")
+                    b.Property<string>("Business")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -38,9 +38,6 @@ namespace EFCore.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("NumberOfDepartments")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

@@ -6,6 +6,8 @@ using AutoMapper;
 using Core.DTOs;
 using Core.DTOs.Companies;
 using Core.Entities;
+using Core.Enums;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BussinessLayer.Mappings
 {
@@ -13,14 +15,13 @@ namespace BussinessLayer.Mappings
     {
         public MappingCompanies()
         {
-            CreateMap<CreateCompanyDto, Company>()
-                .ForMember(dest => dest.NumberOfDepartments, opt => opt.MapFrom(src => src.Departments.Count));
+            CreateMap<CreateCompanyDto, Company>();
 
-            CreateMap<UpdateCompanyDto, Company>()
-                .ForMember(dest => dest.NumberOfDepartments, opt => opt.MapFrom(src => src.Departments.Count));
+            CreateMap<UpdateCompanyDto, Company>();
             
             CreateMap<Company, CompanyDto>()
-                .ForMember(dest => dest.Departments, opt => opt.MapFrom(src => src.Departments.Count))
+                // .ForMember(dest => dest.Business, opt => opt.MapFrom(src => Enum.GetName(typeof(Business), src.Business)))
+                .ForMember(dest => dest.NumberOfDepartments, opt => opt.MapFrom(src => src.Departments.Count))
                 .ReverseMap();
         }
     }
