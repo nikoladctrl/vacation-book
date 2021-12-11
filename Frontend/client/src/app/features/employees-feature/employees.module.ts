@@ -10,6 +10,10 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { EmployeeNewComponent } from './components/employee-new/employee-new.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromEmployee from './state/employee.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { EmployeeEffects } from './state/employee.effects';
 
 
 @NgModule({
@@ -25,7 +29,9 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
   imports: [
     CommonModule,
     EmployeesRoutingModule,
-    RouterModule
+    RouterModule,
+    StoreModule.forFeature(fromEmployee.employeeFeatureKey, fromEmployee.reducer),
+    EffectsModule.forFeature([EmployeeEffects])
   ]
 })
 export class EmployeesModule { }

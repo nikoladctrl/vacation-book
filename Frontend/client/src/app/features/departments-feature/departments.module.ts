@@ -9,6 +9,10 @@ import { DepartmentListComponent } from './components/department-list/department
 import { DepartmentNewComponent } from './components/department-new/department-new.component';
 import { DepartmentEditComponent } from './components/department-edit/department-edit.component';
 import { DepartmentSearchComponent } from './components/department-search/department-search.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromDepartment from './state/department.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { DepartmentEffects } from './state/department.effects';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { DepartmentSearchComponent } from './components/department-search/depart
   ],
   imports: [
     CommonModule,
-    DepartmentsRoutingModule
+    DepartmentsRoutingModule,
+    StoreModule.forFeature(fromDepartment.departmentFeatureKey, fromDepartment.reducer),
+    EffectsModule.forFeature([DepartmentEffects])
   ]
 })
 export class DepartmentsModule { }
