@@ -1,30 +1,80 @@
+import { selectLoadStatus } from './../../companies-feature/state/company.selectors';
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
+import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
+import { catchError, map, concatMap, filter, switchMap, tap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
 import * as DepartmentActions from './department.actions';
+import { AppState } from 'src/app/store';
+import { Store } from '@ngrx/store';
+import * as fromDepartmentSelectors from './department.selectors';
+import { DepartmentService } from '../resources/department.service';
+import { Router } from '@angular/router';
 
 
 
 @Injectable()
 export class DepartmentEffects {
+  
+  getDepartments$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(DepartmentActions.getDepartments),
+        concatLatestFrom(() => this.store.select(fromDepartmentSelectors.selectLoadStatus)),
+        filter(([_, loadStatus]) => loadStatus === 'NOT_LOADED'),
+        map(() => DepartmentActions.loadDepartments())
+    );
+  });
 
-  loadDepartments$ = createEffect(() => {
-    return this.actions$.pipe( 
+  loadCompanies$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(DepartmentActions.loadDepartments),
+        switchMap(() =>
+          this.departmentService.getDepartments().pipe(
+            map(departments => DepartmentActions.loadDepartmentsSuccess({ departments:  departments })),
+            catchError(error => of(DepartmentActions.loadDepartmentsFailure({ error : error }))))
+          ),
+    );
+  });
 
-      ofType(DepartmentActions.loadDepartments),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => DepartmentActions.loadDepartmentsSuccess({ data })),
-          catchError(error => of(DepartmentActions.loadDepartmentsFailure({ error }))))
-      )
+  createDepartment$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(DepartmentActions.createDepartment),
+        concatMap((action) =>
+          this.departmentService.createDepartment(action.department).pipe(
+            map(department => DepartmentActions.createDepartmentSuccess({ department })),
+            catchError(error => of(DepartmentActions.createDepartmentFailure({ error }))))
+          ),
+    );
+  });
+
+  editDepartment$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(DepartmentActions.editDepartment),
+        concatMap((action) =>
+          this.departmentService.updateDepartment(action.id, action.department).pipe(
+            map(department => DepartmentActions.editDepartmentSuccess({ department })),
+            catchError(error => of(DepartmentActions.editDepartmentFailure({ error }))))
+          ),
+    );
+  });
+
+  deleteDepartment$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(DepartmentActions.deleteDepartment),
+        concatMap((action) =>
+          this.departmentService.deleteDepartment(action.id).pipe(
+            map(() => DepartmentActions.deleteDepartmentSuccess()),
+            catchError(error => of(DepartmentActions.deleteDepartmentFailure({ error }))))
+          ),
     );
   });
 
 
-
-  constructor(private actions$: Actions) {}
+  constructor(
+              private actions$: Actions, 
+              private store: Store<AppState>, 
+              private departmentService: DepartmentService,
+              private router: Router
+  ) {}
 
 }

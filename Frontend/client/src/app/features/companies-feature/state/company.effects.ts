@@ -41,9 +41,9 @@ export class CompanyEffects {
   createCompany$ = createEffect(() => {
     return this.actions$.pipe(
         ofType(CompanyActions.createCompany),
-        concatMap((company) => this.companyService.createCompany(company).pipe(
+        concatMap((action) => this.companyService.createCompany(action.company).pipe(
           map(company => CompanyActions.createCompanySuccess({ company })),
-          tap(() => this.router.navigate(['/'])),
+          tap(() => this.router.navigate(['/companies'])),
           catchError((error) => of(CompanyActions.createCompanyFailure({ error: error })))
         ))
     );
@@ -52,19 +52,43 @@ export class CompanyEffects {
   editCompany$ = createEffect(() => {
     return this.actions$.pipe(
         ofType(CompanyActions.editCompany),
-        concatMap((id, company) => this.companyService.updateCompany(id, company).pipe(
+        concatMap((action) => this.companyService.updateCompany(action.id, action.company).pipe(
           map(company => CompanyActions.editCompanySuccess({ company })),
-          tap(() => this.router.navigate(['/'])),
+          tap(() => this.router.navigate(['/companies'])),
           catchError((error) => of(CompanyActions.editCompanyFailure({ error: error })))
+        ))
+    );
+  });
+
+  deleteCompany$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CompanyActions.deleteCompany),
+      concatMap((action) =>
+        this.companyService.deleteCompany(action.id).pipe(
+          map(() => CompanyActions.deleteCompanySuccess()),
+          tap(() => this.router.navigate(['/companies'])),
+          catchError(error => of(CompanyActions.deleteCompanyFailure({ error }))))
+        ),
+    );
+  });
+
+  getBusinesses$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(CompanyActions.getBusinesses),
+        switchMap(() => this.companyService.getBusinesses().pipe(
+          map(businesses => CompanyActions.loadBusinessesSuccess({ businesses })),
+          catchError((error) => of(CompanyActions.loadBusinessesFailure({ error: error })))
         ))
     );
   });
 
 
 
-  constructor(private actions$: Actions, 
+  constructor(
+              private actions$: Actions, 
               private store: Store<AppState>, 
               private companyService: CompanyService,
-              private router: Router) {}
+              private router: Router
+  ) {}
 
 }

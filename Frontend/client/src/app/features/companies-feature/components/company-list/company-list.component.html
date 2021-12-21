@@ -1,4 +1,9 @@
-<div class="" *ngIf="companies$ | async as companies">
+<ng-container *ngIf="companies$ | async as companies">
+    <div>
+        <button class="btn btn-primary" routerLink="new">
+            Create new company
+        </button>
+    </div>
    <div class="text-center"> 
         <h3>List of all registered companies</h3>
         <app-company-search></app-company-search>
@@ -9,24 +14,6 @@
             <li *ngFor="let company of companies">
                 <app-company-item [company]="company"></app-company-item>
             </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
-            <li  *ngFor="let company of companies">
-                <app-company-item [company]="company"></app-company-item>
-            </li>
         </ul>
    </div>
-</div>
+</ng-container>

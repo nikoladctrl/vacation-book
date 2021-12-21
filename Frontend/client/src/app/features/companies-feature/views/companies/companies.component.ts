@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import * as CompanyActions from '../../state/company.actions';
 
 @Component({
   selector: 'app-companies',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(CompanyActions.getBusinesses());
   }
 
 }

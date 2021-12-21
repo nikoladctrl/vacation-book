@@ -1,1 +1,33 @@
-<p>company-new works!</p>
+<ng-container *ngIf="businesses$ | async as businesses">
+    <div class="container">
+        <div class="text-center">
+            <h4>Create new company</h4>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form [formGroup]="createCompanyForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control" title="Business" formControlName="businessId">
+                        <option value=""></option>
+                        <option [value]="bus.id" *ngFor="let bus of businesses">{{ bus.name }}</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="address" placeholder="Address">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="country" placeholder="Country">
+                </div>
+    
+                <div>
+                    <button type="submit" class="btn btn-primary" [disabled]="createCompanyForm.invalid">Create company</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-container>

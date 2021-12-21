@@ -1,1 +1,11 @@
-<p>company-detail-employees works!</p>
+<ng-container *ngIf="employees$ | async as employees">
+    <ul>
+        <li *ngFor="let employee of employees">
+            <div class="card">
+                <h5>{{ employee.firstName }} {{ employee.lastName }}</h5>
+                <p>Iskustvo: {{ employee.yearsOfService }}</p>
+                <p>Odmor: {{ employee.onVacation }}</p>
+            </div>
+        </li>
+    </ul>
+</ng-container>

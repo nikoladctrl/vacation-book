@@ -1,4 +1,5 @@
 import { Department } from "./department.model";
+import { Employee } from "./employee.model";
 
 export interface Company
 {
@@ -9,4 +10,5 @@ export interface Company
     country: string;
     numberOfDepartments: number;
     departments: Department[];
+    employees: Employee[];
 }

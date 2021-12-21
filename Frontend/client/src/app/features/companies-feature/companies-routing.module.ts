@@ -13,13 +13,13 @@ import { CompanyDetailEmployeesComponent } from './components/company-detail-emp
 const routes: Routes = [
   { path: '', component: CompaniesComponent, canActivate: [CompaniesGuard], 
   children: [
-    { path: '', component: CompanyListComponent },
+    { path: '', component: CompanyListComponent }, 
+    { path: 'new', component: CompanyNewComponent },
     { path: ':id', component: CompanyDetailComponent, canActivate: [CompanyGuard], children: [
       { path: 'edit', component: CompanyEditComponent },
       { path: 'departments', component: CompanyDetailDepartmentsComponent },
       { path: 'employees', component: CompanyDetailEmployeesComponent },
-    ] },
-    { path: 'new', component: CompanyNewComponent },
+    ]},
     
   ]}
 ];

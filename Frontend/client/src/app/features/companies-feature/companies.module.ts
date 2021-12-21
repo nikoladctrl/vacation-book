@@ -17,6 +17,7 @@ import { CompanyEffects } from './state/company.effects';
 import { CompanyDetailTabHeaderComponent } from './components/company-detail-tab-header/company-detail-tab-header.component';
 import { CompanyDetailEmployeesComponent } from './components/company-detail-employees/company-detail-employees.component';
 import { CompanyDetailDepartmentsComponent } from './components/company-detail-departments/company-detail-departments.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,8 +37,10 @@ import { CompanyDetailDepartmentsComponent } from './components/company-detail-d
     CommonModule,
     CompaniesRoutingModule, 
     RouterModule, 
+    ReactiveFormsModule,
     StoreModule.forFeature(fromCompany.companyFeatureKey, fromCompany.reducer), 
     EffectsModule.forFeature([CompanyEffects]),
+
   ]
 })
 export class CompaniesModule { }

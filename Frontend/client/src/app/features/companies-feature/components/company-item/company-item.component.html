@@ -1,3 +1,13 @@
 <div class="card">
-    <a [routerLink]="[company.id]">link</a>
+    <div class="text-center">
+        <h4><a [routerLink]="[company.id]">{{ company.name }}</a></h4>
+    </div>
+    <div class="text-start pl-2">
+        <p><i class="bi bi-briefcase"></i>&nbsp;<strong>{{ company.business }}</strong></p>
+        <p><i class="bi bi-building"></i>&nbsp;<strong>{{ company.address }}</strong></p>
+        <p><i class="bi bi-compass"></i>&nbsp;<strong>{{ company.country }}</strong></p>
+    </div>
+    <div class="pl-2">
+        <p><i class="bi bi-archive"></i>&nbsp;<strong>{{ company.departments.length }}</strong></p>
+    </div>
 </div>

@@ -3,6 +3,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from 'src/app/models/company.model';
+import { Business } from 'src/app/models/business.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,23 @@ export class CompanyService {
     return this.http.get<Company>(url);
   }
 
-  createCompany(company) {
+  createCompany(company: Company) {
     const url = `${environment.baseUrl}/companies`;
     return this.http.post<Company>(url, company);
   }
 
-  updateCompany(id, company) {
+  updateCompany(id: number, company: Company) {
     const url = `${environment.baseUrl}/companies/${id}`;
-    return this.http.post<Company>(url, company);
+    return this.http.put<Company>(url, company);
+  }
+
+  deleteCompany(id: number) {
+    const url = `${environment.baseUrl}/companies/${id}`;
+    return this.http.delete<void>(url);
+  }
+
+  getBusinesses() {
+    const url = `${environment.baseUrl}/businesses`;
+    return this.http.get<Business[]>(url);
   }
 }

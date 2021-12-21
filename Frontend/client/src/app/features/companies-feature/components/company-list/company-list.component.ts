@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Company } from 'src/app/models/company.model';
@@ -14,7 +15,7 @@ export class CompanyListComponent implements OnInit {
 
   companies$: Observable<Company[]>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router:Router) { }
 
   ngOnInit(): void {
     this.companies$ = this.store.select(fromCompanySelectors.selectCompanies);

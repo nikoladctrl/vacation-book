@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Business } from 'src/app/models/business.model';
 import { Company } from 'src/app/models/company.model';
 
 export const getCompanies = createAction(
@@ -25,7 +26,7 @@ export const getCompany = createAction(
 );
 
 export const createCompany = createAction(
-  '[Company New Component] Load Company',
+  '[Company New Component] Create Company',
   props<{ company: Company }>()
 );
 
@@ -50,6 +51,37 @@ export const editCompanySuccess = createAction(
 );
 
 export const editCompanyFailure = createAction(
-  '[Company Effects] Create Company Failure',
+  '[Company Effects] Edit Company Failure',
   props<{ error: Error }>()
 );
+
+export const deleteCompany = createAction(
+  '[Company Edit Component] Delete Company',
+  props<{ id: number}>()
+);
+
+export const deleteCompanySuccess = createAction(
+  '[Company Effects] Delete Company Success'
+);
+
+export const deleteCompanyFailure = createAction(
+  '[Company Effects] Delete Company Failure',
+  props<{ error: Error }>()
+);
+
+export const getBusinesses = createAction(
+  '[Companies Component] Get Businesses'
+);
+
+export const loadBusinessesSuccess = createAction(
+  '[Company Effects] Load Businesses Success',
+  props<{ businesses: Business[] }>()
+);
+
+export const loadBusinessesFailure = createAction(
+  '[Company Effects] Edit Businesses Failure',
+  props<{ error: Error }>()
+);
+
+
+
