@@ -9,14 +9,32 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211211092943_CreateTables")]
-    partial class CreateTables
+    [Migration("20211221094232_RemoveColumnFromEmployeesTable")]
+    partial class RemoveColumnFromEmployeesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
+
+            modelBuilder.Entity("Core.Entities.Business", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Businesses");
+                });
 
             modelBuilder.Entity("Core.Entities.Company", b =>
                 {
@@ -27,9 +45,8 @@ namespace EFCore.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Business")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("BusinessId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -42,6 +59,8 @@ namespace EFCore.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BusinessId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -63,9 +82,6 @@ namespace EFCore.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("NumberOfEmployees")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -81,6 +97,9 @@ namespace EFCore.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("DaysOfPerYear")
                         .HasColumnType("INTEGER");
@@ -104,18 +123,28 @@ namespace EFCore.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("OnVacation")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("YearsOfService")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Employeees");
+                });
+
+            modelBuilder.Entity("Core.Entities.Company", b =>
+                {
+                    b.HasOne("Core.Entities.Business", "Business")
+                        .WithMany("Companies")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
                 });
 
             modelBuilder.Entity("Core.Entities.Department", b =>
@@ -131,16 +160,31 @@ namespace EFCore.Migrations
 
             modelBuilder.Entity("Core.Entities.Employee", b =>
                 {
+                    b.HasOne("Core.Entities.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Core.Entities.Department", "Department")
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId");
 
+                    b.Navigation("Company");
+
                     b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Core.Entities.Business", b =>
+                {
+                    b.Navigation("Companies");
                 });
 
             modelBuilder.Entity("Core.Entities.Company", b =>
                 {
                     b.Navigation("Departments");
+
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("Core.Entities.Department", b =>

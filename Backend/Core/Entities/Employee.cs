@@ -29,12 +29,14 @@ namespace Core.Entities
         
         public DateTime? HolidaysEndOn { get; set; }
         
-        public bool OnVacation { get; set; }
-        
         public int? DepartmentId { get; set; }
         
         public Department Department { get; set; }
 
         public int DaysOfPerYear { get; set; }
+
+        public int CompanyId { get; set; }
+
+        public Company Company { get; set; }
     }
 }

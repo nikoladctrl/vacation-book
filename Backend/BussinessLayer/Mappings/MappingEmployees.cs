@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Core.DTOs.Employees;
 using Core.Entities;
@@ -14,21 +11,18 @@ namespace BussinessLayer.Mappings
         {
             CreateMap<CreateEmployeeDto, Employee>()
                 .ForMember(dest => dest.YearsOfService, opt => opt.MapFrom(src => CountYearsOfService(src.YearsOfService)))
-                .ForMember(dest => dest.DaysOfPerYear, opt => opt.MapFrom(src => CountDaysOf(src.YearsOfService)))
-                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value)));
+                .ForMember(dest => dest.DaysOfPerYear, opt => opt.MapFrom(src => CountDaysOf(src.YearsOfService)));
             
             CreateMap<UpdateEmployeeDto, Employee>()
                 .ForMember(dest => dest.YearsOfService, opt => opt.MapFrom(src => CountYearsOfService(src.YearsOfService)))
-                .ForMember(dest => dest.DaysOfPerYear, opt => opt.MapFrom(src => CountDaysOf(src.YearsOfService)))
-                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value)));
+                .ForMember(dest => dest.DaysOfPerYear, opt => opt.MapFrom(src => CountDaysOf(src.YearsOfService)));
             
             CreateMap<Employee, EmployeeDto>()
-                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value)))
-                .ReverseMap();
+                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => (src.HolidaysStartOn.HasValue && src.HolidaysEndOn.HasValue) ? IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value) : false));
             
             CreateMap<Employee, CompanyViewEmployeeDto>()
-                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value)))
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.LastName + src.FirstName))
+                .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => (src.HolidaysStartOn.HasValue && src.HolidaysEndOn.HasValue) ? IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value) : false))
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.LastName + " " + src.FirstName))
                 .ForMember(dest => dest.DaysLeft, opt => opt.MapFrom(src => CountDaysLeft(src)));
         }
 
@@ -60,21 +54,25 @@ namespace BussinessLayer.Mappings
         }
 
         private bool IsOnVacation(DateTime start, DateTime end) {
-            if (start != null && end != null) {
-                if (start <= DateTime.Now && end >= DateTime.Now) {
+            // if (start != null && end != null) {
+                // if (start <= DateTime.Now && end >= DateTime.Now) {
+                //     return true;
+                // }
+                // return false;
+            // }
+            // return false;    
+             if (start <= DateTime.Now && end >= DateTime.Now) {
                     return true;
                 }
-                return false;
-            }
-            return false;    
+            return false;
         }
 
         private int CountDaysLeft(Employee employee) {
             
-            if (employee.OnVacation && employee.HolidaysStartOn < DateTime.Now && employee.HolidaysEndOn > DateTime.Now) {
+            if (employee.HolidaysStartOn <= DateTime.Now && employee.HolidaysEndOn > DateTime.Now) {
                 return (employee.HolidaysEndOn - DateTime.Now).Value.Days;
             }
-            else if (employee.OnVacation && employee.HolidaysStartOn > DateTime.Now && employee.HolidaysEndOn > DateTime.Now) {
+            else if (employee.HolidaysStartOn > DateTime.Now && employee.HolidaysEndOn > DateTime.Now) {
                 return employee.DaysOfPerYear;
             }
             return 0;

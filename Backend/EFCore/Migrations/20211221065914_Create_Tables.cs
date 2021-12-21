@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EFCore.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class Create_Tables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Businesses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Businesses", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
@@ -14,13 +27,19 @@ namespace EFCore.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Business = table.Column<string>(type: "TEXT", nullable: false),
+                    BusinessId = table.Column<int>(type: "INTEGER", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Companies_Businesses_BusinessId",
+                        column: x => x.BusinessId,
+                        principalTable: "Businesses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,11 +77,18 @@ namespace EFCore.Migrations
                     HolidaysEndOn = table.Column<DateTime>(type: "TEXT", nullable: true),
                     OnVacation = table.Column<bool>(type: "INTEGER", nullable: false),
                     DepartmentId = table.Column<int>(type: "INTEGER", nullable: true),
-                    DaysOfPerYear = table.Column<int>(type: "INTEGER", nullable: false)
+                    DaysOfPerYear = table.Column<int>(type: "INTEGER", nullable: false),
+                    CompanyId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employeees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employeees_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employeees_Departments_DepartmentId",
                         column: x => x.DepartmentId,
@@ -70,6 +96,17 @@ namespace EFCore.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Businesses_Name",
+                table: "Businesses",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_BusinessId",
+                table: "Companies",
+                column: "BusinessId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Companies_Name",
@@ -80,6 +117,11 @@ namespace EFCore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_CompanyId",
                 table: "Departments",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employeees_CompanyId",
+                table: "Employeees",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
@@ -98,6 +140,9 @@ namespace EFCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Companies");
+
+            migrationBuilder.DropTable(
+                name: "Businesses");
         }
     }
 }

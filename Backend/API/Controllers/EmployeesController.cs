@@ -23,7 +23,7 @@ namespace API.Controllers
 
             return (employee == null) ?
                 NotFound() :
-                Ok(employee);
+                Created("Employee is successfully created!", employee);
         }
 
         [HttpPut("{id}")]
@@ -58,7 +58,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<EmployeeDto>>> GetEmployee(int id)
+        public async Task<ActionResult<EmployeeDto>> GetEmployee(int id)
         {
             var employee = await _employeeService.GetEmployee(id);
 
@@ -67,7 +67,7 @@ namespace API.Controllers
                 Ok(employee);
         }
 
-        [HttpGet("{companyId}")]
+        [HttpGet("company/{companyId}")]
         public async Task<ActionResult<List<CompanyViewEmployeeDto>>> GetEmployeesByCompanyId(int companyId)
         {
             var employees = await _employeeService.GetEmployeesByCompanyId(companyId);

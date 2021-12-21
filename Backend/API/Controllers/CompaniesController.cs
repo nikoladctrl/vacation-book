@@ -24,7 +24,7 @@ namespace API.Controllers
 
             return (company == null) ?
                 NotFound() :
-                Created("", company);
+                Created("Company is successfully created!", company);
         }
 
         [HttpPut("{id}")]

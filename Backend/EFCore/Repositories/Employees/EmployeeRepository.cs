@@ -47,13 +47,13 @@ namespace EFCore.Repositories.Employees
 
         public async Task<Employee> GetEmployee(int id)
         {
-            return await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+            return await _context.Employees.Include(e => e.Company).Include(e => e.Department).FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<List<Employee>> GetEmployeesByCompanyId(int companyId)
         {
             return await _context.Employees
-                .Include(e => e.Department)
+                .Include(e => e.Department).ThenInclude(d => d.Company)
                 .Where(e => e.Department.CompanyId == companyId).ToListAsync();
         }
     }

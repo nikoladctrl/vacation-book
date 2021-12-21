@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EFCore.Context;
+using EFCore.Repositories.Businesses;
 using EFCore.Repositories.Companies;
 using EFCore.Repositories.Departments;
 using EFCore.Repositories.Employees;
@@ -24,6 +25,7 @@ namespace EFCore
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
             
             return services;
         }

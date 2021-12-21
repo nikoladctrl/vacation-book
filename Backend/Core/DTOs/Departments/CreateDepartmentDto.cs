@@ -15,6 +15,5 @@ namespace Core.DTOs.Departments
 
         [Required]
         public int CompanyId { get; set; }
-        public ICollection<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
     }
 }

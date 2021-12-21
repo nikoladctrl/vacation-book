@@ -22,7 +22,7 @@ namespace EFCore.Repositories.Departments
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
 
-            return department;
+            return await _context.Departments.Include(c => c.Company).FirstOrDefaultAsync(d => d.Id == department.Id);
         }
         
         public async Task<Department> UpdateDepartment(Department department)
@@ -30,7 +30,7 @@ namespace EFCore.Repositories.Departments
             _context.Departments.Update(department);
             await _context.SaveChangesAsync();
 
-            return department;
+            return await GetDepartment(department.Id);
         }
 
         public async Task DeleteDepartment(int id)
@@ -43,12 +43,12 @@ namespace EFCore.Repositories.Departments
         
         public async Task<List<Department>> GetDepartments()
         {
-            return await _context.Departments.Include(d => d.Employees.Count).ToListAsync();
+            return await _context.Departments.Include(d => d.Employees).ToListAsync();
         }
 
         public async Task<Department> GetDepartment(int id)
         {
-            return await _context.Departments.Include(d => d.Employees).FirstOrDefaultAsync(d => d.Id == id); 
+            return await _context.Departments.Include(d => d.Company).Include(d => d.Employees).FirstOrDefaultAsync(d => d.Id == id); 
         }
 
         public async Task<List<Department>> GetDepartmentsByCompanyId(int companyId)

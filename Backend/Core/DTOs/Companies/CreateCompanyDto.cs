@@ -13,11 +13,11 @@ namespace Core.DTOs
         public string Name { get; set; }
 
         [Required]
-        public int Business { get; set; }
+        public int BusinessId { get; set; }
 
-        [Required]
         public string Address { get; set; }
+        
+        [Required]
         public string Country { get; set; }
-        public ICollection<CreateDepartmentDto> Departments { get; set; } = new List<CreateDepartmentDto>();
     }
 }

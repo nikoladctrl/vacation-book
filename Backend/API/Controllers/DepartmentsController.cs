@@ -24,7 +24,7 @@ namespace API.Controllers
 
             return (department == null) ?
                 NotFound() :
-                Created("", department);
+                Created("Department is successfully created!", department);
         }
 
         [HttpPut("{id}")]
@@ -69,7 +69,7 @@ namespace API.Controllers
                 Ok(department);
         }
 
-        [HttpGet("{companyId}")]
+        [HttpGet("company/{companyId}")]
         public async Task<ActionResult<List<CompanyViewDepartmentDto>>> GetDepartmentsByCompanyId(int companyId)
         {
             var departments = await _departmentService.GetDepartmentsByCompanyId(companyId);

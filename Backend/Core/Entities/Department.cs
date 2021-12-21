@@ -19,9 +19,6 @@ namespace Core.Entities
 
         public Company Company { get; set; }
 
-        [Required]
-        public int NumberOfEmployees { get; set; }
-
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     }
 }

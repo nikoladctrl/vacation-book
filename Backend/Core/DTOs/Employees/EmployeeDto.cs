@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.DTOs.Companies;
 using Core.DTOs.Departments;
 using Core.Enums;
 
@@ -13,7 +14,7 @@ namespace Core.DTOs.Employees
         
         public string FirstName { get; set; }
         
-        public int LastName { get; set; }
+        public string LastName { get; set; }
         
         public DateTime? BirthDate { get; set; }
 
@@ -30,5 +31,7 @@ namespace Core.DTOs.Employees
         public DepartmentDto Department { get; set; }
 
         public int DaysOfPerYear { get; set; }
+        public int CompanyId { get; set; }
+        public CompanyDto Company { get; set; }
     }
 }

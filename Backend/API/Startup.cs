@@ -31,7 +31,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddBussinessLayer();
             services.AddEFCore(options => options.UseSqlite(_config.GetConnectionString("DefaultConnection")));
             services.AddCors();

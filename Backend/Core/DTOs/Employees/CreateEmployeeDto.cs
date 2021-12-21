@@ -22,11 +22,10 @@ namespace Core.DTOs.Employees
 
         [Required]
         public int YearsOfService { get; set; }
-
-        public DateTime? HolidaysStartOn { get; set; }
-        
-        public DateTime? HolidaysEndOn { get; set; }
         
         public int? DepartmentId { get; set; }
+
+        [Required]
+        public int CompanyId { get; set; }
     }
 }

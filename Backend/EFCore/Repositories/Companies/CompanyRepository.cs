@@ -41,12 +41,16 @@ namespace EFCore.Repositories.Companies
         
         public async Task<List<Company>> GetCompanies()
         {
-            return await _context.Companies.ToListAsync();
+            return await _context.Companies
+                                    .Include(c => c.Business)
+                                    .Include(c => c.Departments).ToListAsync();
         }
 
         public async Task<Company> GetCompany(int id)
         {
-            return await _context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Companies
+                                    .Include(c => c.Business)
+                                    .Include(c => c.Departments).FirstOrDefaultAsync(c => c.Id == id);
         }
 
     }

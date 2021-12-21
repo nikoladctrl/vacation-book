@@ -73,3 +73,7 @@ C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\obj\Debug\net5
 C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\obj\Debug\net5.0\ref\API.dll
 C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\obj\Debug\net5.0\API.pdb
 C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\NikolaRadanovic\ASPNETProjects\vacation-book\Backend\API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

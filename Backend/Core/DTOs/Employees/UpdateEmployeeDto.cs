@@ -8,5 +8,8 @@ namespace Core.DTOs.Employees
     public class UpdateEmployeeDto : CreateEmployeeDto
     {
         public int Id { get; set; }
+
+        public DateTime? HolidaysStartOn { get; set; }
+        public DateTime? HolidaysEndOn { get; set; }
     }
 }

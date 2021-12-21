@@ -1,0 +1,31 @@
+/* 
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+
+}
+li {
+    flex: 25%;
+    margin: 10px;
+}
+
+.card {
+    width: 260px;
+    height: 200px;
+    background-color: #813f9b;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
+    color: white;
+}
+
+@media screen and (max-width: 780px) {
+
+    li {
+        flex: 100%;
+    }
+
+    .card {
+        width: 100%;
+    }
+} */
