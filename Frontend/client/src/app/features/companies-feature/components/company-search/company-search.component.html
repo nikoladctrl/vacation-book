@@ -1,1 +1,17 @@
-<p>company-search works!</p>
+<div>
+    <h4>Find your company</h4>
+    <form [formGroup]="searchForm" class="d-flex justify-content-between mt-3">
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="name" title="Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="address" title="Address" placeholder="Address">
+        </div>
+        <div>
+            <input type="text" class="form-control " formControlName="country" title="Country" placeholder="Country">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="business" title="Business" placeholder="Business">
+        </div>
+    </form>
+</div>

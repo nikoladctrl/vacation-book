@@ -15,60 +15,53 @@ import { Router } from '@angular/router';
 @Injectable()
 export class EmployeeEffects {
 
-  getEmployees$ = createEffect(() => {
-    return this.actions$.pipe( 
+  getEmployees$ = createEffect(() => 
+    this.actions$.pipe( 
       ofType(EmployeeActions.getEmployees),
       concatLatestFrom(() => this.store.select(fromEmployeeSelectors.selectLoadStatus)),
       filter(([, loadStatus]) => loadStatus === 'NOT_LOADED'),
       map(() => EmployeeActions.loadEmployees())
-    );
-  });
+    )
+  );
 
-  loadEmployees$ = createEffect(() => {
-    return this.actions$.pipe(
+  loadEmployees$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(EmployeeActions.loadEmployees),
-      switchMap(() =>
-        this.employeeService.getEmployees().pipe(
-          map(employees => EmployeeActions.loadEmployeesSuccess({ employees:  employees })),
-          catchError(error => of(EmployeeActions.loadEmployeesFailure({ error : error }))))
-        ),
-    );
-  });
+      switchMap(() => this.employeeService.getEmployees()),
+      map(employees => EmployeeActions.loadEmployeesSuccess({ employees:  employees })),
+      catchError(error => of(EmployeeActions.loadEmployeesFailure({ error : error })))
+    )
+  );
 
-  createEmployee$ = createEffect(() => {
-    return this.actions$.pipe(
+  createEmployee$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(EmployeeActions.createEmployee),
-      concatMap((action) => this.employeeService.createEmployee(action.employee).pipe(
-        map(employee => EmployeeActions.createEmployeeSuccess({ employee })),
-        tap(() => this.router.navigate(['/employees'])),
-        catchError((error) => of(EmployeeActions.createEmployeeFailure({ error: error })))
-      ))
-    );
-  });
+      concatMap((action) => this.employeeService.createEmployee(action.employee)),
+      map(employee => EmployeeActions.createEmployeeSuccess({ employee })),
+      tap(() => this.router.navigate(['/employees'])),
+      catchError((error) => of(EmployeeActions.createEmployeeFailure({ error: error })))
+    )
+  );
 
-  editEmployee$ = createEffect(() => {
-    return this.actions$.pipe(
+  editEmployee$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(EmployeeActions.editEmployee),
-      concatMap((action) => this.employeeService.updateEmployee(action.id, action.employee).pipe(
-        map(employee => EmployeeActions.editEmployeeSuccess({ employee: employee })),
-        tap(() => this.router.navigate(['/employees'])),
-        catchError((error) => of(EmployeeActions.editEmployeeFailure({ error: error })))
-      ))
-    );
-  });
+      concatMap((action) => this.employeeService.updateEmployee(action.id, action.employee)),
+      map(employee => EmployeeActions.editEmployeeSuccess({ employee: employee })),
+      tap(() => this.router.navigate(['/employees'])),
+      catchError((error) => of(EmployeeActions.editEmployeeFailure({ error: error })))
+    )
+  );
 
-  deleteEmployee$ = createEffect(() => {
-    return this.actions$.pipe( 
-
+  deleteEmployee$ = createEffect(() => 
+    this.actions$.pipe(
       ofType(EmployeeActions.deleteEmployee),
-      concatMap((action) =>
-        this.employeeService.deleteEmployee(action.id).pipe(
-          map(() => EmployeeActions.deleteEmployeeSuccess()),
-          tap(() => this.router.navigate(['/employees'])),
-          catchError(error => of(EmployeeActions.deleteEmployeeFailure({ error }))))
-      )
-    );
-  });
+      concatMap((action) => this.employeeService.deleteEmployee(action.id)),
+      map(() => EmployeeActions.deleteEmployeeSuccess()),
+      tap(() => this.router.navigate(['/employees'])),
+      catchError(error => of(EmployeeActions.deleteEmployeeFailure({ error })))
+    )
+  );
 
 
 

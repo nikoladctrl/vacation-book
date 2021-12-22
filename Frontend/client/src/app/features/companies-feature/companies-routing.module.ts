@@ -9,6 +9,7 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
 import { CompanyGuard } from './resources/guards/company.guard';
 import { CompanyDetailDepartmentsComponent } from './components/company-detail-departments/company-detail-departments.component';
 import { CompanyDetailEmployeesComponent } from './components/company-detail-employees/company-detail-employees.component';
+import { CompanyDetailNewDepartmentComponent } from './components/company-detail-new-department/company-detail-new-department.component';
 
 const routes: Routes = [
   { path: '', component: CompaniesComponent, canActivate: [CompaniesGuard], 
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: ':id', component: CompanyDetailComponent, canActivate: [CompanyGuard], children: [
       { path: 'edit', component: CompanyEditComponent },
       { path: 'departments', component: CompanyDetailDepartmentsComponent },
+      { path: 'new-department', component: CompanyDetailNewDepartmentComponent },
       { path: 'employees', component: CompanyDetailEmployeesComponent },
     ]},
     

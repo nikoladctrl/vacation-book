@@ -1,9 +1,10 @@
 <ng-container *ngIf="departments$ | async as departments">
+    <button type="button" class="btn btn-primary mb-2" routerLink="../new-department">Create new department</button>
     <ul class="d-flex justify-content-evenly flex-wrap" style="list-style: none; padding: 0;">
         <li *ngFor="let department of departments" style="padding: 5px;">
             <div class="card" style="min-width: 200px;">
                 <h5><a [routerLink]="['/departments', department.id]">{{ department.name }}</a></h5>
-                <p>Employees: {{ department.numberOfEmployees }}</p>
+                <p>Employees: {{ department.employees.length }}</p>
             </div>
         </li>
     </ul>

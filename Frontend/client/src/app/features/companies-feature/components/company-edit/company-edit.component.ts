@@ -33,16 +33,15 @@ export class CompanyEditComponent implements OnInit {
     return new FormGroup({
       id: new FormControl(this.company.id, [Validators.required]),
       name: new FormControl(this.company.name, [Validators.required]),
-      businessId: new FormControl(this.company['business'], [Validators.required]),
+      businessId: new FormControl(this.company.business.id, [Validators.required]),
       address: new FormControl(this.company.address),
       country: new FormControl(this.company.country, [Validators.required]),
-    })
-
+      image: new FormControl(this.company.image, [Validators.pattern(/\.(jpe?g|png|gif|bmp)$/i)])
+    });
   }
 
   onSubmit() {
-    this.editCompanyForm.get('businessId').setValue(+this.editCompanyForm.get('businessId').value);
-
+    this.editCompanyForm.get('businessId').setValue(parseInt(this.editCompanyForm.get('businessId').value));
     this.store.dispatch(CompanyActions.editCompany({ id: this.company.id, company: this.editCompanyForm.value }));
   }
 

@@ -6,10 +6,11 @@ export interface Employee
     firstName: string;
     lastName: string;
     birthDate: Date;
-    yearsOfService: number;
+    yearsOfService: string;
     holidaysStartOn?: Date;
     holidaysEndOn?: Date;
     onVacation: boolean;
     department?: Department; 
     daysOfPerYear: number;
+    image?: string;
 }

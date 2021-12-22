@@ -1,17 +1,23 @@
 <div class="d-flex flex-column mb-5 detail-container" *ngIf="company$ | async as company">
     <div class="card text-center">
-        <div class="mt-2">
-            <h1>{{ company.name }}</h1>
-            <hr>
+        <div class="headline d-flex justify-content-between flex-column mt-2">
+            <div></div>
+            <div>
+                <h1>{{ company.name }}</h1>
+            </div>
+            <div>
+                <img class="small" [src]="company?.image" alt="logo" *ngIf="company?.image">
+            </div>
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="pl-3">
+        <hr>
+        <div class="info d-flex justify-content-between">
+            <div class="pl-3 text-left">
                 <p><i class="bi bi-building"></i>&nbsp; <strong>Address: </strong>{{ company.address }}</p>
                 <p><i class="bi bi-flag-fill"></i>&nbsp; <strong>Country: </strong>{{ company.country }}</p>
             </div>
-            <div class="pr-3 text-left">
-                <p><i class="bi bi-geo-alt-fill"></i>&nbsp; <strong>Business: </strong>{{ company.business }}</p>
-                <p><i class="bi bi-archive-fill"></i>&nbsp; <strong>Number of deps: </strong>{{ company.numberOfDepartments }}</p>
+            <div class="pr-3 text-right">
+                <p><i class="bi bi-geo-alt-fill"></i>&nbsp; <strong>Business: </strong>{{ company.business.name }}</p>
+                <p><i class="bi bi-archive-fill"></i>&nbsp; <strong>Number of deps: </strong>{{ company.departments.length }}</p>
             </div>
         </div>
 

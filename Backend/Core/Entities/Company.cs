@@ -22,6 +22,8 @@ namespace Core.Entities
         [Required, StringLength(30, MinimumLength = 2)]
         public string Country { get; set; }
         
+        public string Image { get; set; }
+        
         public ICollection<Department> Departments { get; set; } = new List<Department>();
         
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();

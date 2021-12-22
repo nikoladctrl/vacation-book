@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-center">
+    <form #createDepartmentForm="ngForm">
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" title="Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="createDepartmentForm.invalid">Create Department</button>
+        </div>
+    </form>
+</div>

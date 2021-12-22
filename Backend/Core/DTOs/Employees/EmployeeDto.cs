@@ -18,7 +18,7 @@ namespace Core.DTOs.Employees
         
         public DateTime? BirthDate { get; set; }
 
-        public YearsOfService YearsOfService { get; set; }
+        public string YearsOfService { get; set; }
 
         public DateTime? HolidaysStartOn { get; set; }
         
@@ -31,7 +31,11 @@ namespace Core.DTOs.Employees
         public DepartmentDto Department { get; set; }
 
         public int DaysOfPerYear { get; set; }
+        
         public int CompanyId { get; set; }
+        
         public CompanyDto Company { get; set; }
+
+        public string Image { get; set; }
     }
 }

@@ -42,6 +42,12 @@ export const reducer = createReducer(
       loadStatus: 'NOT_LOADED'
     };
   }),
+  on(DepartmentActions.getDepartment, (state, action) => {
+    return {
+      ...state,
+      currentDepartment: state.departments.find(d => d.id === action.id)
+    };
+  }),
   on(DepartmentActions.createDepartmentSuccess, (state, action) => {
     return {
       ...state,

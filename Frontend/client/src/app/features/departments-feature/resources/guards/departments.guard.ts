@@ -14,8 +14,7 @@ export class DepartmentsGuard implements CanActivate {
 
   constructor(private store: Store<AppState>) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
       this.store.dispatch(DepartmentActions.getDepartments());
       return this.store.select(fromDepartmentSelectors.selectIsLoaded).pipe(filter((isLoaded) => isLoaded));
   }

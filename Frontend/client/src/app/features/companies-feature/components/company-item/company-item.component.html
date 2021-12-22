@@ -3,8 +3,8 @@
         <h4><a [routerLink]="[company.id]">{{ company.name }}</a></h4>
     </div>
     <div class="text-start pl-2">
-        <p><i class="bi bi-briefcase"></i>&nbsp;<strong>{{ company.business }}</strong></p>
-        <p><i class="bi bi-building"></i>&nbsp;<strong>{{ company.address }}</strong></p>
+        <p><i class="bi bi-briefcase"></i>&nbsp;<strong>{{ company.business.name }}</strong></p>
+        <p><i class="bi bi-building"></i>&nbsp;<strong>{{ (company.address.length > 20) ? (company.address | slice:0:40)+"..." : company.address }}</strong></p>
         <p><i class="bi bi-compass"></i>&nbsp;<strong>{{ company.country }}</strong></p>
     </div>
     <div class="pl-2">

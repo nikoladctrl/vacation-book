@@ -8,5 +8,7 @@ namespace Core.DTOs.Companies
     public class UpdateCompanyDto : CreateCompanyDto
     {
         public int Id { get; set; }
+        
+        public string Image { get; set; }
     }
 }

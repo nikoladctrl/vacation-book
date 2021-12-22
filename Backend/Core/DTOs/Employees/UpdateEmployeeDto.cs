@@ -11,5 +11,6 @@ namespace Core.DTOs.Employees
 
         public DateTime? HolidaysStartOn { get; set; }
         public DateTime? HolidaysEndOn { get; set; }
+        public string Image { get; set; }
     }
 }

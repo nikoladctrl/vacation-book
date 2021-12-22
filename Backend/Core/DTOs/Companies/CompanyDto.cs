@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.DTOs.Businesses;
 using Core.DTOs.Departments;
-using Core.Enums;
+using Core.DTOs.Employees;
 
 namespace Core.DTOs.Companies
 {
@@ -13,14 +11,18 @@ namespace Core.DTOs.Companies
         
         public string Name { get; set; }
         
-        public string Business { get; set; } 
+        public int BusinessId { get; set; } 
+        
+        public BusinessDto Business { get; set; } 
  
         public string Address { get; set; }
         
         public string Country { get; set; }
 
         public int NumberOfDepartments { get; set; }
+        public string Image { get; set; }
         
         public ICollection<DepartmentDto> Departments { get; set; } = new List<DepartmentDto>();
+        public ICollection<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
     }
 }

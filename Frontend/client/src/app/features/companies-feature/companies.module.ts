@@ -17,7 +17,10 @@ import { CompanyEffects } from './state/company.effects';
 import { CompanyDetailTabHeaderComponent } from './components/company-detail-tab-header/company-detail-tab-header.component';
 import { CompanyDetailEmployeesComponent } from './components/company-detail-employees/company-detail-employees.component';
 import { CompanyDetailDepartmentsComponent } from './components/company-detail-departments/company-detail-departments.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UnderscorePipe } from './resources/pipes/underscore.pipe';
+import { FilterCompaniesPipe } from './resources/pipes/filter-companies.pipe';
+import { CompanyDetailNewDepartmentComponent } from './components/company-detail-new-department/company-detail-new-department.component';
 
 
 @NgModule({
@@ -32,11 +35,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyDetailTabHeaderComponent,
     CompanyDetailEmployeesComponent,
     CompanyDetailDepartmentsComponent,
+    UnderscorePipe,
+    FilterCompaniesPipe,
+    CompanyDetailNewDepartmentComponent,
   ],
   imports: [
     CommonModule,
     CompaniesRoutingModule, 
     RouterModule, 
+    FormsModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromCompany.companyFeatureKey, fromCompany.reducer), 
     EffectsModule.forFeature([CompanyEffects]),

@@ -2,9 +2,11 @@
     <ul>
         <li *ngFor="let employee of employees">
             <div class="card">
-                <h5>{{ employee.firstName }} {{ employee.lastName }}</h5>
-                <p>Iskustvo: {{ employee.yearsOfService }}</p>
-                <p>Odmor: {{ employee.onVacation }}</p>
+                <div>
+                    <h5 class="text-center">{{ employee.firstName }} {{ employee.lastName }}</h5>
+                    <p>Iskustvo: <strong>{{ employee.yearsOfService | underscore }}</strong></p>
+                    <span class="d-flex justify-content-center">Odmor: <div class="circle" [ngClass]="{ 'red': !employee.onVacation, 'green': employee.onVacation }"></div></span>
+                </div>
             </div>
         </li>
     </ul>

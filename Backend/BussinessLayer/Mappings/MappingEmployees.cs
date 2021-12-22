@@ -2,6 +2,7 @@ using System;
 using AutoMapper;
 using Core.DTOs.Employees;
 using Core.Entities;
+using Core.Enums;
 
 namespace BussinessLayer.Mappings
 {
@@ -18,6 +19,7 @@ namespace BussinessLayer.Mappings
                 .ForMember(dest => dest.DaysOfPerYear, opt => opt.MapFrom(src => CountDaysOf(src.YearsOfService)));
             
             CreateMap<Employee, EmployeeDto>()
+                .ForMember(dest => dest.YearsOfService, opt => opt.MapFrom(src => Enum.GetName(src.YearsOfService.GetType(), src.YearsOfService)))
                 .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => (src.HolidaysStartOn.HasValue && src.HolidaysEndOn.HasValue) ? IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value) : false));
             
             CreateMap<Employee, CompanyViewEmployeeDto>()

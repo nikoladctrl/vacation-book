@@ -21,7 +21,7 @@ namespace EFCore.Repositories.Companies
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
             
-            return company;
+            return await _context.Companies.Include(c => c.Business).OrderBy(c => c.Id).LastOrDefaultAsync();
         }
 
         public async Task<Company> UpdateCompany(Company companyToUpdate)
@@ -43,7 +43,8 @@ namespace EFCore.Repositories.Companies
         {
             return await _context.Companies
                                     .Include(c => c.Business)
-                                    .Include(c => c.Departments).ToListAsync();
+                                    .Include(c => c.Departments).ThenInclude(d => d.Employees)
+                                    .Include(c => c.Employees).ToListAsync();
         }
 
         public async Task<Company> GetCompany(int id)

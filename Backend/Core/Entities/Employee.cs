@@ -38,5 +38,7 @@ namespace Core.Entities
         public int CompanyId { get; set; }
 
         public Company Company { get; set; }
+        
+        public string Image { get; set; }
     }
 }

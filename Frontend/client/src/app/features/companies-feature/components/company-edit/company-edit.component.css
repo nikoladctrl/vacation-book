@@ -1,3 +1,11 @@
 .line:nth-child() {
     flex: 1;
 }
+
+.red {
+    border: red 1px solid;
+}
+
+small {
+    color: red;
+}

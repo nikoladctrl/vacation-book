@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { selectCurrentCompany } from './../../state/company.selectors';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store';
 import * as fromCompaniesSelectors from '../../state/company.selectors';
 import { Employee } from 'src/app/models/employee.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-company-detail-employees',

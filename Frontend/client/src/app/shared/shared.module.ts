@@ -12,10 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right'
-    })
+    RouterModule
   ],
   exports: [
     HeaderComponent

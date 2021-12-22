@@ -1,0 +1,27 @@
+ul {
+    list-style: none;
+    padding: 3px;
+}
+
+ul li {
+    padding: 2px;
+}
+
+button {
+    display: flex;
+    justify-content: end;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    clip-path: circle(40%);
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}

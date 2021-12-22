@@ -4,14 +4,13 @@
             Create new company
         </button>
     </div>
-   <div class="text-center"> 
-        <h3>List of all registered companies</h3>
-        <app-company-search></app-company-search>
+   <div class="text-center">
+        <app-company-search (filterValues)="onChangeFilter($event)"></app-company-search>
     </div>
 
    <div class="d-flex justify-content-center mt-5">
        <ul class="d-flex flex-wrap w-100">
-            <li *ngFor="let company of companies">
+            <li *ngFor="let company of companies | filterCompanies:filterValues" [control]="filterValues">
                 <app-company-item [company]="company"></app-company-item>
             </li>
         </ul>

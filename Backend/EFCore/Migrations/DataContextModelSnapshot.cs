@@ -51,6 +51,9 @@ namespace EFCore.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -114,6 +117,9 @@ namespace EFCore.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("HolidaysStartOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
