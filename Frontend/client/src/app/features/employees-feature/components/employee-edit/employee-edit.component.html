@@ -1,1 +1,80 @@
-<p>employee-edit works!</p>
+<div class="container d-flex flex-column">
+    <div class="text-center">
+        <h5>Edit employee</h5>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="firstName" 
+                        title="First name"
+                        [ngClass]="{ 'red' : (editEmployeeForm.controls.firstName.invalid && (editEmployeeForm.controls.firstName.dirty || editEmployeeForm.controls.firstName.touched))}">
+                <small *ngIf="editEmployeeForm.controls.firstName.invalid">This field is required!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="lastName" 
+                        title="Last name"
+                        [ngClass]="{ 'red' : (editEmployeeForm.controls.lastName.invalid && (editEmployeeForm.controls.lastName.dirty || editEmployeeForm.controls.lastName.touched))}">
+                <small *ngIf="editEmployeeForm.controls.lastName.invalid">This field is required!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="number" 
+                        class="form-control" 
+                        formControlName="yearsOfService" 
+                        title="Years of service" 
+                        placeholder="Years of service"
+                        min="0"
+                        max="40"
+                        [ngClass]="{ 'red' : (editEmployeeForm.controls.yearsOfService.invalid && (editEmployeeForm.controls.yearsOfService.dirty || editEmployeeForm.controls.yearsOfService.touched))}">
+                <small *ngIf="editEmployeeForm.controls.yearsOfService.invalid">This field is required!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="date" 
+                        class="form-control" 
+                        formControlName="birthDate" 
+                        title="BirthDate"
+                        [ngClass]="{ 'red' : (editEmployeeForm.controls.birthDate.invalid && (editEmployeeForm.controls.birthDate.dirty || editEmployeeForm.controls.birthDate.touched))}">
+                <small *ngIf="editEmployeeForm.controls.birthDate.invalid">This field is required!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="image" 
+                        title="Image" 
+                        placeholder="Insert your image">
+                <small *ngIf="editEmployeeForm.controls.image.invalid">This is not an image!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="date" 
+                        class="form-control" 
+                        formControlName="holidaysStartOn" 
+                        title="From" 
+                        placeholder="Insert holidays start date">
+                <small *ngIf="editEmployeeForm.controls.holidaysStartOn.invalid">This field is required!</small>
+            </div>
+            <div class="form-group">
+                <input 
+                        type="date" 
+                        class="form-control" 
+                        formControlName="holidaysEndOn" 
+                        title="To" 
+                        placeholder="Insert holidays end date"
+                        [ngClass]="{}">
+                <small *ngIf="editEmployeeForm.controls.holidaysEndOn.invalid">This field is required!</small>
+            </div>
+
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary" [disabled]="editEmployeeForm.invalid">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

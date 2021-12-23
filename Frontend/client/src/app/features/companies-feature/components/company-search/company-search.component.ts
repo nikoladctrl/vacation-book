@@ -1,24 +1,30 @@
 import { FilterCompany } from './../../../../models/filter-company.model';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-company-search',
   templateUrl: './company-search.component.html',
   styleUrls: ['./company-search.component.css']
 })
-export class CompanySearchComponent implements OnInit {
+export class CompanySearchComponent implements OnInit, OnDestroy {
 
+  subscriptions: Subscription[] = [];
   searchForm: FormGroup;
 
   @Output() filterValues: EventEmitter<FilterCompany> = new EventEmitter<FilterCompany>();
 
   constructor() { }
-
+  
   ngOnInit(): void {
     this.searchForm = this.initializeForm();
     this.listenFormChanges();
+  }
+ 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   private initializeForm() {
@@ -31,10 +37,12 @@ export class CompanySearchComponent implements OnInit {
   }
 
   private listenFormChanges() {
-    this.searchForm.valueChanges
-      .pipe(
-        debounceTime(500)
-      ).subscribe(formValues => this.filterValues.emit(formValues));
+    this.subscriptions.push(
+      this.searchForm.valueChanges
+        .pipe(
+          debounceTime(500)
+        ).subscribe(formValues => this.filterValues.emit(formValues))
+    );
   }
 
 }

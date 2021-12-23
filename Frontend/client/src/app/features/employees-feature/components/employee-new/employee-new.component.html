@@ -1,1 +1,54 @@
-<p>employee-new works!</p>
+<div class="d-flex justify-content-center form-div">
+    <form [formGroup]="createEmployeeForm">
+        <div class="form-group">
+            <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="firstName" 
+                    title="First name" 
+                    placeholder="First name"
+                    [ngClass]="{ 'red' : (createEmployeeForm.controls.firstName.invalid && (createEmployeeForm.controls.firstName.dirty || createEmployeeForm.controls.firstName.touched))}">
+            <small *ngIf="createEmployeeForm.controls.firstName.invalid && (createEmployeeForm.controls.firstName.dirty || createEmployeeForm.controls.firstName.touched)">This field is required!</small>
+        </div>
+        <div class="form-group">
+            <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="lastName" 
+                    title="Last name" 
+                    placeholder="Last name"
+                    [ngClass]="{ 'red' : (createEmployeeForm.controls.lastName.invalid && (createEmployeeForm.controls.lastName.dirty || createEmployeeForm.controls.lastName.touched))}">
+            <small *ngIf="createEmployeeForm.controls.lastName.invalid && (createEmployeeForm.controls.lastName.dirty || createEmployeeForm.controls.lastName.touched)">This field is required!</small>
+        </div>
+        <div class="form-group">
+            <input 
+                    type="date" 
+                    class="form-control" 
+                    formControlName="birthDate" 
+                    title="BirthDate" 
+                    placeholder="Date of birth"
+                    [ngClass]="{ 'red' : (createEmployeeForm.controls.birthDate.invalid && (createEmployeeForm.controls.birthDate.dirty || createEmployeeForm.controls.birthDate.touched))}">
+            <small *ngIf="createEmployeeForm.controls.birthDate.invalid && (createEmployeeForm.controls.birthDate.dirty || createEmployeeForm.controls.birthDate.touched)">This field is required!</small>
+        </div>
+        <div class="form-group">
+            <input
+                    type="number" 
+                    class="form-control" 
+                    formControlName="yearsOfService" 
+                    title="Years of service" 
+                    placeholder="Years of service"
+                    [ngClass]="{ 'red' : (createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched))}">
+            <small *ngIf="createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched)">This field is required!</small>
+        </div>
+        <div class="form-group">
+            <select class="form-control" title="Choose company">
+                <option [value]="company.id" *ngFor="let company of companies">{{ company.name }}</option>
+            </select>
+            <small *ngIf="createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched)">This field is required!</small>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="createEmployeeForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>

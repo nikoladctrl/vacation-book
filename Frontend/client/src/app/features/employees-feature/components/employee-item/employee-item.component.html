@@ -1,1 +1,14 @@
-<p>employee-item works!</p>
+<div class="card d-flex flex-row justify-content-center align-items-baseline">
+    <div class="child">
+        <h6><a [routerLink]="[employee.id]">{{ employee.firstName }} {{ employee.lastName }}</a></h6>
+    </div>
+    <div class="child">
+        <p><a [routerLink]="['/departments', employee.department.id]">{{ employee.department.name }}</a></p>
+    </div>
+    <div class="child">
+        <p><a [routerLink]="['/companies', employee.company.id]">{{ employee.company.name }}</a></p>
+    </div>
+    <div class="child">
+        <span class="d-flex justify-content-center">Odmor: <div class="circle" [ngClass]="{ 'red': !employee.onVacation, 'green': employee.onVacation }"></div></span>
+    </div>
+</div>

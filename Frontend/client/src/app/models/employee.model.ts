@@ -1,3 +1,4 @@
+import { Company } from './company.model';
 import { Department } from "./department.model";
 
 export interface Employee 
@@ -10,7 +11,8 @@ export interface Employee
     holidaysStartOn?: Date;
     holidaysEndOn?: Date;
     onVacation: boolean;
-    department?: Department; 
+    department?: Department;
+    company: Company; 
     daysOfPerYear: number;
     image?: string;
 }

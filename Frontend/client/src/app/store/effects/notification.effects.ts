@@ -15,9 +15,14 @@ export class NotificationEffects {
   sendCompanyCreatedSuccessNotification$ = createEffect(() => 
     this.actions$.pipe(
         ofType(CompanyActions.createCompanySuccess),
-        tap((action) => {
-          this.toastrService.success(`Company ${action.company.name} is successfully created!`);
-        }),
+        tap((action) => this.toastrService.success(`Company ${action.company.name} is successfully created!`)),
+    ), { dispatch : false }
+  );
+
+  sendCompanyUpdatedSuccessNotification$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(CompanyActions.editCompanySuccess),
+        tap((action) => this.toastrService.info(`Company ${action.company.name} is successfully updated!`)),
     ), { dispatch : false }
   );
   
@@ -28,12 +33,28 @@ export class NotificationEffects {
     ), { dispatch : false }
   );
 
+  sendDepartmentUpdatedSuccessNotification$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(DepartmentActions.editDepartmentSuccess),
+        tap((action) => this.toastrService.info(`${action.department.name} is successfully updated!`)),
+    ), { dispatch : false }
+  );
+
   sendEmployeeCreatedSuccessNotification$ = createEffect(() => 
     this.actions$.pipe(
         ofType(EmployeeActions.createEmployeeSuccess),
         tap((action) => this.toastrService.success(`${action.employee.firstName} ${action.employee.lastName} is successfully created!`)),
     ), { dispatch : false }
   );
+
+  sendEmployeeUpdatedSuccessNotification$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(EmployeeActions.editEmployeeSuccess),
+        tap((action) => this.toastrService.info(`${action.employee.firstName} ${action.employee.lastName} is successfully updated!`)),
+    ), { dispatch : false }
+  );
+
+
 
   sendFailureNotification$ = createEffect(() => 
     this.actions$.pipe(

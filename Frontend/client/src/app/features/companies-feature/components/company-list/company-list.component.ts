@@ -15,6 +15,7 @@ import * as fromCompanySelectors from '../../state/company.selectors';
 })
 export class CompanyListComponent implements OnInit {
 
+  p: number = 1;
   companies$: Observable<Company[]>;
   filterValues: FilterCompany = { name: '', address: '', country: '', business: ''};
 

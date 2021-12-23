@@ -1,1 +1,11 @@
-<p>department-item works!</p>
+<div class="card d-flex flex-row justify-content-center align-items-baseline">
+    <div class="child">
+        <h4><a [routerLink]="[department.id]">{{ department.name }}</a></h4>
+    </div>
+    <div class="child">
+        <p><a [routerLink]="['/companies', department.company.id]">{{ department.company.name }}</a></p>
+    </div>
+    <div class="child">
+        <p>{{ department.employees.length }}</p>
+    </div>
+</div>

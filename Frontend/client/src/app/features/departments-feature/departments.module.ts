@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromDepartment from './state/department.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { DepartmentEffects } from './state/department.effects';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DepartmentEffects } from './state/department.effects';
   imports: [
     CommonModule,
     DepartmentsRoutingModule,
+    SharedModule,
     StoreModule.forFeature(fromDepartment.departmentFeatureKey, fromDepartment.reducer),
     EffectsModule.forFeature([DepartmentEffects])
   ]

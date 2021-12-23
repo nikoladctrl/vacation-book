@@ -17,7 +17,7 @@ export const selectIsLoaded = createSelector(
   (state: State) => state.loadStatus === 'LOADED'
 );
 
-export const selectCompanies = createSelector(
+export const selectDepartments = createSelector(
   selectDepartmentState,
   (state: State) => state.departments
 );

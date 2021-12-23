@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Department } from 'src/app/models/department.model';
 
 @Component({
   selector: 'app-department-item',
   templateUrl: './department-item.component.html',
   styleUrls: ['./department-item.component.css']
 })
-export class DepartmentItemComponent implements OnInit {
+export class DepartmentItemComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  @Input() department: Department;
+  
 }

@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromEmployee from './state/employee.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { EmployeeEffects } from './state/employee.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { EmployeeEffects } from './state/employee.effects';
     CommonModule,
     EmployeesRoutingModule,
     RouterModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(fromEmployee.employeeFeatureKey, fromEmployee.reducer),
     EffectsModule.forFeature([EmployeeEffects])
   ]

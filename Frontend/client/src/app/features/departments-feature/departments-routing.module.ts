@@ -13,7 +13,6 @@ const routes: Routes = [
     { path: '', component: DepartmentListComponent },
     { path: ':id', component: DepartmentDetailComponent, canActivate: [DepartmentGuard], children: [
       { path: 'edit', component: DepartmentEditComponent },
-      // { path: 'employees', component: DepartmentDetailEmployeeeComponent },
     ]},
     { path: 'new', component: DepartmentNewComponent }
   ] }

@@ -15,7 +15,7 @@ export class FilterCompaniesPipe implements PipeTransform {
     
     let newCompanies = [];
     companies.filter(company => {
-      if (((filterValues.name && '' !== filterValues.name) || company.name.includes(filterValues.name)) && ((filterValues.address && '' !== filterValues.address) || company.address.includes(filterValues.address)) && ((filterValues.country && '' !== filterValues.country) || company.country.includes(filterValues.country)) && ((filterValues.business && '' !== filterValues.business) || company.business.name.includes(filterValues.business))) {
+      if ((filterValues.name && '' !== filterValues.name && company.name.includes(filterValues.name)) || (filterValues.address && '' !== filterValues.address && company.address.includes(filterValues.address)) || (filterValues.country && '' !== filterValues.country && company.country.includes(filterValues.country)) || (filterValues.business && '' !== filterValues.business && company.business.name.includes(filterValues.business))) {
         newCompanies.push(company);
       }
     });

@@ -1,1 +1,18 @@
-<p>employee-list works!</p>
+<ng-container *ngIf="employees$ | async as employees">
+    <div class="m-5">
+        <button class="btn btn-primary" routerLink="new">
+            Create new employee
+        </button>
+    </div>
+    <div class="w-100 text-center">
+        <h5>Find employee</h5>
+        <app-employee-search></app-employee-search>
+    </div>
+    <div class="w-100">
+        <ul class="d-flex flex-column w-100">
+            <li class="" *ngFor="let employee of employees">
+                <app-employee-item [employee]="employee"></app-employee-item>
+            </li>
+        </ul>
+    </div>
+</ng-container>

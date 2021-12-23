@@ -6,14 +6,14 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { EmployeeNewComponent } from './components/employee-new/employee-new.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
+import { EmployeeGuard } from './resources/guards/employee.guard';
 
 const routes: Routes = [
   { path: '', component: EmployeesComponent, canActivate: [EmployeesGuard], children: [
     { path: '', component: EmployeeListComponent },
     { path: 'new', component: EmployeeNewComponent },
-    { path: ':id', component: EmployeeDetailComponent, children: [
-      { path: 'edit', component: EmployeeEditComponent },
-    ]}
+    { path: ':id', component: EmployeeDetailComponent, canActivate: [EmployeeGuard] },
+    { path: ':id/edit', component: EmployeeEditComponent, canActivate: [EmployeeGuard] },
   ]}
 ];
 

@@ -1,1 +1,10 @@
-<p>department-list works!</p>
+<ng-container *ngIf="departments$ | async as departments">
+    <ul class="d-flex flex-column">
+        <li class="m-1" *ngFor="let department of departments | paginate: { itemsPerPage: 10, currentPage: p }">
+            <app-department-item [department]="department"></app-department-item>
+        </li>
+    </ul>
+    <div class="d-flex justify-content-end">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</ng-container>

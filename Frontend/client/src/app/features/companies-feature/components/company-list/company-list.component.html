@@ -9,10 +9,13 @@
     </div>
 
    <div class="d-flex justify-content-center mt-5">
-       <ul class="d-flex flex-wrap w-100">
-            <li *ngFor="let company of companies | filterCompanies:filterValues" [control]="filterValues">
+        <ul class="d-flex flex-wrap w-100">
+            <li *ngFor="let company of companies | filterCompanies: filterValues | paginate: { itemsPerPage: 10, currentPage: p }" [control]="filterValues">
                 <app-company-item [company]="company"></app-company-item>
             </li>
         </ul>
+   </div>
+   <div class="d-flex justify-content-end">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
    </div>
 </ng-container>
