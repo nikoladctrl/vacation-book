@@ -1,7 +1,7 @@
-import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
-import { Department } from 'src/app/models/department.model';
+import { Department } from 'src/app/shared/models/department.model';
 import * as DepartmentActions from './department.actions';
+import * as CompanyActions from '../../companies-feature/state/company.actions';
 
 export const departmentFeatureKey = 'department';
 
@@ -48,11 +48,11 @@ export const reducer = createReducer(
       currentDepartment: state.departments.find(d => d.id === action.id)
     };
   }),
-  on(DepartmentActions.createDepartmentSuccess, (state, action) => {
+  on(DepartmentActions.createDepartmentSuccess, CompanyActions.createCompanyDepartmentSuccess, (state, action) => {
     return {
       ...state,
-      departments: [...state.departments, action.department]
-    }
+      departments: [...state.departments, {...action.department}]
+    };
   }),
   on(DepartmentActions.createDepartmentFailure, (state, action) => {
     return {
@@ -76,6 +76,11 @@ export const reducer = createReducer(
       ...state,
       error: action.error
     };
+  }),
+  on(DepartmentActions.deleteDepartment, (state, action) => {
+    return {
+      ...state,
+      departments: state.departments.filter(d => d.id !== action.id)
+    }
   })
-
 );

@@ -2,8 +2,10 @@
 import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from 'src/app/models/company.model';
-import { Business } from 'src/app/models/business.model';
+import { Company } from 'src/app/shared/models/company.model';
+import { Business } from 'src/app/shared/models/business.model';
+import { env } from 'process';
+import { Department } from 'src/app/shared/models/department.model';
 
 @Injectable({
   providedIn: 'root'

@@ -25,7 +25,7 @@ export class DepartmentEffects {
     )
   );
 
-  loadCompanies$ = createEffect(() => 
+  loadDepartments$ = createEffect(() => 
     this.actions$.pipe(
         ofType(DepartmentActions.loadDepartments),
         switchMap(() => this.departmentService.getDepartments()),
@@ -37,10 +37,10 @@ export class DepartmentEffects {
   createDepartment$ = createEffect(() =>
     this.actions$.pipe(
         ofType(DepartmentActions.createDepartment),
-        concatMap((action) =>
-          this.departmentService.createDepartment(action.department)),
+        concatMap((action) => this.departmentService.createDepartment(action.department)),
         map(department => DepartmentActions.createDepartmentSuccess({ department })),
-        catchError(error => of(DepartmentActions.createDepartmentFailure({ error })))
+        tap(department => this.router.navigate([`/companies/${department.department.company.id}/departments`])),
+        catchError(error => of(DepartmentActions.createDepartmentFailure({ error }))),
     )
   );
 

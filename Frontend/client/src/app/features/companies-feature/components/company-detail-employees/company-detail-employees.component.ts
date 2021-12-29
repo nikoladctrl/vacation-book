@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store';
 import * as fromCompaniesSelectors from '../../state/company.selectors';
-import { Employee } from 'src/app/models/employee.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -14,6 +14,7 @@ import { map } from 'rxjs/operators';
 })
 export class CompanyDetailEmployeesComponent implements OnInit {
 
+  p: number = 1;
   employees$: Observable<Employee[]>;
 
   constructor(private store: Store<AppState>) { }

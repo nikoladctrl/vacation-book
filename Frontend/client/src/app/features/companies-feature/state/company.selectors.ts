@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromCompany from './company.reducer';
 import { State } from './company.reducer';
-import { Company } from 'src/app/models/company.model';
+import { Company } from 'src/app/shared/models/company.model';
 
 export const selectCompanyState = createFeatureSelector<fromCompany.State>(
   fromCompany.companyFeatureKey
@@ -25,6 +25,11 @@ export const selectCompanies = createSelector(
 export const selectCurrentCompany = createSelector(
   selectCompanyState,
   (state: State) => state.currentCompany
+);
+
+export const selectCurrentCompanyValue = createSelector(
+  selectCompanyState,
+  (state: State): Company => state.currentCompany
 );
 
 export const selectCurrentCompanyDepartments = createSelector(

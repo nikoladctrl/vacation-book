@@ -29,9 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    EmployeesRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    EmployeesRoutingModule,
     StoreModule.forFeature(fromEmployee.employeeFeatureKey, fromEmployee.reducer),
     EffectsModule.forFeature([EmployeeEffects])
   ]

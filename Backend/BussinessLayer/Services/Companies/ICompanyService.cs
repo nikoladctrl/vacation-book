@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.DTOs;
 using Core.DTOs.Companies;
+using Core.DTOs.Departments;
 
 namespace BussinessLayer.Services.Companies
 {
@@ -14,5 +15,6 @@ namespace BussinessLayer.Services.Companies
         Task DeleteCompany(int id);
         Task<List<CompanyDto>> GetCompanies();
         Task<CompanyDto> GetCompany(int id);
+        Task<CompanyDto> CreateCompanyDepartment(CreateDepartmentDto createDepartmentDto);
     }
 }

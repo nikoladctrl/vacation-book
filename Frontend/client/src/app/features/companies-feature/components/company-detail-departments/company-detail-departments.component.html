@@ -1,11 +1,23 @@
 <ng-container *ngIf="departments$ | async as departments">
-    <button type="button" class="btn btn-primary mb-2" routerLink="../new-department">Create new department</button>
-    <ul class="d-flex justify-content-evenly flex-wrap" style="list-style: none; padding: 0;">
-        <li *ngFor="let department of departments" style="padding: 5px;">
-            <div class="card" style="min-width: 200px;">
-                <h5><a [routerLink]="['/departments', department.id]">{{ department.name }}</a></h5>
-                <p>Employees: {{ department.employees.length }}</p>
-            </div>
-        </li>
-    </ul>
+    <div>
+        <div>
+            <button type="button" class="btn btn-primary mb-2" routerLink="../new-department">Create new department</button>
+        </div>
+        <div *ngIf="departments.length > 0; else message">
+            <ul class="d-flex justify-content-evenly flex-wrap pl-4">
+                <li *ngFor="let department of departments | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <div class="card">
+                        <h5><a [routerLink]="['/departments', department.id]">{{ department.name }}</a></h5>
+                        <p>Employees: {{ department.employees.length }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-end">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #message>
+        <h4>There is no departments for company yet!</h4>
+    </ng-template>
 </ng-container>

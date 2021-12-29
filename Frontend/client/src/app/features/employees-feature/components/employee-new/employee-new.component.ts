@@ -1,11 +1,10 @@
-import { Company } from './../../../../models/company.model';
+import { Company } from '../../../../shared/models/company.model';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store';
+import { Observable } from 'rxjs';
 import * as EmployeeActions from '../../state/employee.actions';
-import { map } from 'rxjs/operators';
-import * as fromCompanySelectors from '../../../companies-feature/state/company.selectors';
 
 @Component({
   selector: 'app-employee-new',
@@ -15,12 +14,11 @@ import * as fromCompanySelectors from '../../../companies-feature/state/company.
 export class EmployeeNewComponent implements OnInit {
 
   createEmployeeForm: FormGroup;
-  companies: Company[];
+  companies$: Observable<Company[]>;
 
   constructor(private store: Store<AppState>) { }
-
+ 
   ngOnInit(): void {
-    this.store.select(fromCompanySelectors.selectCompanies).pipe(map(companies => this.companies = companies));
     this.createEmployeeForm = this.initializeForm();
   }
 
@@ -29,8 +27,16 @@ export class EmployeeNewComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       birthDate: new FormControl('', [Validators.required, this.validateDate.bind(this)]),
-      yearsOfService: new FormControl('', [Validators.required])
+      yearsOfService: new FormControl('', [Validators.required, this.validateService.bind(this)]),
+      companyId: new FormControl('', [Validators.required])
     });
+  }
+
+  private validateService(control: FormControl) {
+    if (control.value < 0 || control.value > 40) {
+      return { invalidNumber: { invalid : true } };
+    }
+    return null;
   }
 
   private validateDate(control: FormControl) {

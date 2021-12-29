@@ -16,25 +16,27 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './store';
 import { NotificationEffects } from './store/effects/notification.effects';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { SpinnerEffects } from './store/effects/spinner.effects';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule, 
     SharedModule,
+    AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 10000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
     StoreModule.forRoot(reducers, { metaReducers }), !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), 
-    EffectsModule.forRoot([NotificationEffects]),
+    EffectsModule.forRoot([NotificationEffects, SpinnerEffects]),
   ],
   providers: [ToastrService, DatePipe],
   bootstrap: [AppComponent]

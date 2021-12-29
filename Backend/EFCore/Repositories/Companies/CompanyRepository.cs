@@ -54,5 +54,20 @@ namespace EFCore.Repositories.Companies
                                     .Include(c => c.Departments).FirstOrDefaultAsync(c => c.Id == id);
         }
 
+        public async Task<Company> CreateCompanyDepartment(Department department)
+        {
+            var company = await GetCompany(department.CompanyId);
+
+            if (company == null) {
+                return null;
+            }
+
+            company.Departments.Add(department);
+
+            _context.Companies.Update(company);
+            await _context.SaveChangesAsync();
+
+            return company;
+        }
     }
 }

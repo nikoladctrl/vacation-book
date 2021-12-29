@@ -4,10 +4,10 @@ import { Observable, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
-import { Business } from 'src/app/models/business.model';
+import { Business } from 'src/app/shared/models/business.model';
 import * as fromCompanySelectors from '../../state/company.selectors';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Company } from 'src/app/models/company.model';
+import { Company } from 'src/app/shared/models/company.model';
 import * as CompanyActions from '../../state/company.actions';
 import { map } from 'rxjs/operators';
 

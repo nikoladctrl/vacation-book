@@ -1,4 +1,4 @@
-import { Department } from './../../../models/department.model';
+import { Department } from '../../../shared/models/department.model';
 import { createAction, props } from '@ngrx/store';
 
 export const getDepartments = createAction(
@@ -26,7 +26,7 @@ export const getDepartment = createAction(
 
 export const createDepartment = createAction(
   '[Department New Component] Create Department', 
-  props<{ department: Department }>()
+  props<{ department: { name: string, companyId: number } }>()
 );
 
 export const createDepartmentSuccess = createAction(

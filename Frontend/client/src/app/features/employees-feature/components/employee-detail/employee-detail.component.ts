@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store';
-import { Employee } from 'src/app/models/employee.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 import * as fromEmployeeSelectors from '../../state/employee.selectors';
 
 @Component({

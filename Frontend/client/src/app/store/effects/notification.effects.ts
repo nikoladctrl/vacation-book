@@ -25,6 +25,13 @@ export class NotificationEffects {
         tap((action) => this.toastrService.info(`Company ${action.company.name} is successfully updated!`)),
     ), { dispatch : false }
   );
+
+  sendCompanyDeletedSuccessNotification$ = createEffect(() => 
+  this.actions$.pipe(
+      ofType(CompanyActions.deleteCompanySuccess),
+      tap(() => this.toastrService.info(`Company is successfully deleted!`)),
+  ), { dispatch : false }
+);
   
   sendDepartmentCreatedSuccessNotification$ = createEffect(() => 
     this.actions$.pipe(
@@ -37,6 +44,13 @@ export class NotificationEffects {
     this.actions$.pipe(
         ofType(DepartmentActions.editDepartmentSuccess),
         tap((action) => this.toastrService.info(`${action.department.name} is successfully updated!`)),
+    ), { dispatch : false }
+  );
+
+  sendDepartmentDeletedSuccessNotification$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(DepartmentActions.deleteDepartmentSuccess),
+        tap(() => this.toastrService.info(`Department is successfully deleted!`)),
     ), { dispatch : false }
   );
 
@@ -55,7 +69,6 @@ export class NotificationEffects {
   );
 
 
-
   sendFailureNotification$ = createEffect(() => 
     this.actions$.pipe(
       ofType(
@@ -72,7 +85,7 @@ export class NotificationEffects {
               EmployeeActions.createEmployeeFailure,
               EmployeeActions.editEmployeeFailure,
               EmployeeActions.deleteEmployeeFailure),
-        tap(() => this.toastrService.error(`Error happened somewhere!`))
+        tap((action) => this.toastrService.error(`Error happened somewhere! ${action.error.message}`))
     ), { dispatch: false }
   );
 

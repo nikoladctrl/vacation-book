@@ -1,10 +1,11 @@
+import { selectCurrentCompany, selectCurrentCompanyDepartments } from './../../state/company.selectors';
 import { Observable } from 'rxjs';
-import { selectCurrentCompany } from './../../state/company.selectors';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
-import * as fromCompaniesSelectors from '../../state/company.selectors';
-import { Department } from 'src/app/models/department.model';
+import { Department } from 'src/app/shared/models/department.model';
+import * as DepartmentActions from '../../../departments-feature/state/department.actions';
+import * as fromCompanySelectors from '../../state/company.selectors';
 
 @Component({
   selector: 'app-company-detail-departments',
@@ -13,12 +14,13 @@ import { Department } from 'src/app/models/department.model';
 })
 export class CompanyDetailDepartmentsComponent implements OnInit {
 
+  companyId: number;
   departments$: Observable<Department[]>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.departments$ = this.store.select(fromCompaniesSelectors.selectCurrentCompanyDepartments);
+    this.departments$ = this.store.select(fromCompanySelectors.selectCurrentCompanyDepartments);
   }
 
 }

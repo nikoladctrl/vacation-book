@@ -14,5 +14,6 @@ namespace EFCore.Repositories.Companies
         Task DeleteCompany(int id);
         Task<List<Company>> GetCompanies();
         Task<Company> GetCompany(int id);
+        Task<Company> CreateCompanyDepartment(Department department);
     }
 }

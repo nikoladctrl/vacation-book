@@ -2,11 +2,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Business } from 'src/app/models/business.model';
+import { Business } from 'src/app/shared/models/business.model';
 import { AppState } from 'src/app/store';
 import * as fromCompanySelectors from '../../state/company.selectors';
 import * as CompanyActions from '../../state/company.actions';
-import { Company } from 'src/app/models/company.model';
+import { Company } from 'src/app/shared/models/company.model';
 
 @Component({
   selector: 'app-company-new',

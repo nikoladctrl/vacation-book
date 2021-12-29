@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Employee } from 'src/app/models/employee.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 
 @Component({
   selector: 'app-employee-item',

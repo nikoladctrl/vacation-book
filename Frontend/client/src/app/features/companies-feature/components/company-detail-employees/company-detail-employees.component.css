@@ -7,10 +7,10 @@ ul li {
     padding: 2px;
 }
 
-button {
+/* button {
     display: flex;
     justify-content: end;
-}
+} */
 
 .circle {
     width: 25px;

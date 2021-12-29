@@ -9,11 +9,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
   ],
   exports: [
     NotFoundComponent

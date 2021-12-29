@@ -1,3 +1,4 @@
+import { CompaniesGuard } from './../companies-feature/resources/guards/companies.guard';
 import { EmployeesGuard } from './resources/guards/employees.guard';
 import { EmployeesComponent } from './views/employees/employees.component';
 import { NgModule } from '@angular/core';
@@ -7,14 +8,18 @@ import { EmployeeNewComponent } from './components/employee-new/employee-new.com
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import { EmployeeGuard } from './resources/guards/employee.guard';
+import { NotFoundComponent } from 'src/app/pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: EmployeesComponent, canActivate: [EmployeesGuard], children: [
-    { path: '', component: EmployeeListComponent },
-    { path: 'new', component: EmployeeNewComponent },
-    { path: ':id', component: EmployeeDetailComponent, canActivate: [EmployeeGuard] },
-    { path: ':id/edit', component: EmployeeEditComponent, canActivate: [EmployeeGuard] },
-  ]}
+  { path: '', component: EmployeesComponent, canActivate: [EmployeesGuard], 
+    children: [
+      { path: '', component: EmployeeListComponent },
+      { path: 'new', component: EmployeeNewComponent },
+      { path: ':id', component: EmployeeDetailComponent, canActivate: [EmployeeGuard] },
+      { path: ':id/edit', component: EmployeeEditComponent, canActivate: [EmployeeGuard] },
+      { path: '**', redirectTo: '' }
+    ]
+  },
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Business } from 'src/app/models/business.model';
-import { Company } from 'src/app/models/company.model';
+import { Business } from 'src/app/shared/models/business.model';
+import { Company } from 'src/app/shared/models/company.model';
+import { Department } from 'src/app/shared/models/department.model';
 
 export const getCompanies = createAction(
   '[Companies Guard] Get Companies'
@@ -17,7 +18,7 @@ export const loadCompaniesSuccess = createAction(
 
 export const loadCompaniesFailure = createAction(
   '[Company Effects] Load Companies Failure',
-  props<{ error: any }>()
+  props<{ error: Error }>()
 );
 
 export const getCompany = createAction(
@@ -83,5 +84,19 @@ export const loadBusinessesFailure = createAction(
   props<{ error: Error }>()
 );
 
+export const createCompanyDepartment = createAction(
+  '[Company Detail New Component] Create Company Department',
+  props<{ department: { name: string, companyId: number} }>()
+);
+
+export const createCompanyDepartmentSuccess = createAction(
+  '[Company Effects] Create Company Department Success',
+  props<{ department: Department }>()
+);
+
+export const createCompanyDepartmentFailure = createAction(
+  '[Company Effects] Create Company Department Failure',
+  props<{ error: Error }>()
+);
 
 

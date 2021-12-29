@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { map, filter, switchMap, catchError, concatMap, tap, delay, debounceTime } from 'rxjs/operators';
-
-
-import * as CompanyActions from './company.actions';
-import { AppState } from 'src/app/store';
-
-import { Store } from '@ngrx/store';
-import * as fromCompanySelectors from './company.selectors';
+import { map, filter, switchMap, catchError, concatMap, tap } from 'rxjs/operators';
 import { CompanyService } from '../resources/company.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import * as CompanyActions from './company.actions';
+import * as fromCompanySelectors from './company.selectors';
+import { DepartmentService } from '../../departments-feature/resources/department.service';
 
 
 @Injectable()
@@ -38,27 +37,27 @@ export class CompanyEffects {
   createCompany$ = createEffect(() => 
     this.actions$.pipe(
         ofType(CompanyActions.createCompany),
-        concatMap((action) => this.companyService.createCompany(action.company)),
-        map((company) => CompanyActions.createCompanySuccess({ company })),
+        concatMap(action => this.companyService.createCompany(action.company)),
+        map(company => CompanyActions.createCompanySuccess({ company })),
         tap(() => this.router.navigate(['/companies'])),
-        catchError((error) => of(CompanyActions.createCompanyFailure({ error: error })))
+        catchError(error => of(CompanyActions.createCompanyFailure({ error: error })))
     )
   );
 
   editCompany$ = createEffect(() =>
     this.actions$.pipe(
         ofType(CompanyActions.editCompany),
-        concatMap((action) => this.companyService.updateCompany(action.id, action.company)),
+        concatMap(action => this.companyService.updateCompany(action.id, action.company)),
         map(company => CompanyActions.editCompanySuccess({ company })),
         tap(() => this.router.navigate(['/companies'])),
-        catchError((error) => of(CompanyActions.editCompanyFailure({ error: error })))
+        catchError(error => of(CompanyActions.editCompanyFailure({ error: error })))
     )
   );
 
   deleteCompany$ = createEffect(() => 
     this.actions$.pipe(
       ofType(CompanyActions.deleteCompany),
-      concatMap((action) => this.companyService.deleteCompany(action.id)),
+      concatMap(action => this.companyService.deleteCompany(action.id)),
       map(() => CompanyActions.deleteCompanySuccess()),
       tap(() => this.router.navigate(['/companies'])),
       catchError(error => of(CompanyActions.deleteCompanyFailure({ error })))
@@ -70,9 +69,20 @@ export class CompanyEffects {
         ofType(CompanyActions.getBusinesses),
         switchMap(() => this.companyService.getBusinesses()),
         map(businesses => CompanyActions.loadBusinessesSuccess({ businesses })),
-        catchError((error) => of(CompanyActions.loadBusinessesFailure({ error: error })))
+        catchError(error => of(CompanyActions.loadBusinessesFailure({ error: error })))
     )
   );
+
+  createCompanyDepartment$ = createEffect(() => 
+    this.actions$.pipe(
+        ofType(CompanyActions.createCompanyDepartment),
+        concatMap(action => this.departmentService.createDepartment(action.department)),
+        map(department => CompanyActions.createCompanyDepartmentSuccess({ department })),
+        tap(department => this.router.navigate([`/companies/${department.department.company.id}/departments`])),
+        catchError(error => of(CompanyActions.createCompanyDepartmentFailure({ error })))
+    )
+  );
+
 
 
 
@@ -80,6 +90,7 @@ export class CompanyEffects {
               private actions$: Actions, 
               private store: Store<AppState>, 
               private companyService: CompanyService,
+              private departmentService: DepartmentService,
               private router: Router
   ) {}
 

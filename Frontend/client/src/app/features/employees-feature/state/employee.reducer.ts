@@ -1,7 +1,7 @@
 import { PagesModule } from './../../../pages/pages.module';
 import { Pipe } from '@angular/core';
 import { createReducer, on } from '@ngrx/store';
-import { Employee } from 'src/app/models/employee.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 import * as EmployeeActions from './employee.actions';
 
 export const employeeFeatureKey = 'employee';
@@ -9,15 +9,15 @@ export const employeeFeatureKey = 'employee';
 export interface State {
   employees: Employee[];
   currentEmployee: Employee;
-  error: Error;
   loadStatus: 'NOT_LOADED' | 'LOADING' | 'LOADED';
+  error: Error;
 }
 
 export const initialState: State = {
   employees: null,
   currentEmployee: null,
-  error: null,
-  loadStatus: 'NOT_LOADED'
+  loadStatus: 'NOT_LOADED',
+  error: null
 };
 
 export const reducer = createReducer(

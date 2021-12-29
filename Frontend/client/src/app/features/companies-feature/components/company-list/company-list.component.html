@@ -10,7 +10,7 @@
 
    <div class="d-flex justify-content-center mt-5">
         <ul class="d-flex flex-wrap w-100">
-            <li *ngFor="let company of companies | filterCompanies: filterValues | paginate: { itemsPerPage: 10, currentPage: p }" [control]="filterValues">
+            <li *ngFor="let company of companies | filterCompanies: filterValues | paginate: { itemsPerPage: 9, currentPage: p }" [control]="filterValues">
                 <app-company-item [company]="company"></app-company-item>
             </li>
         </ul>

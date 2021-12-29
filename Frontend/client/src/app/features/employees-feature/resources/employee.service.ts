@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from 'src/app/models/company.model';
-import { Employee } from 'src/app/models/employee.model';
+import { Company } from 'src/app/shared/models/company.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

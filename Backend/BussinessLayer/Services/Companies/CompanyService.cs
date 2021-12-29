@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Core.DTOs;
 using Core.DTOs.Companies;
+using Core.DTOs.Departments;
 using Core.Entities;
 using EFCore.Repositories.Companies;
 
@@ -51,6 +52,11 @@ namespace BussinessLayer.Services.Companies
         public async Task<CompanyDto> GetCompany(int id)
         {
             return _mapper.Map<CompanyDto>(await _companyRepository.GetCompany(id));
+        }
+
+        public async Task<CompanyDto> CreateCompanyDepartment(CreateDepartmentDto createDepartmentDto)
+        {
+            return _mapper.Map<CompanyDto>(await _companyRepository.CreateCompanyDepartment(_mapper.Map<Department>(createDepartmentDto)));
         }
     }
 }

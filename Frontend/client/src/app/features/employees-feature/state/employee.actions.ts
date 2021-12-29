@@ -1,4 +1,4 @@
-import { Employee } from './../../../models/employee.model';
+import { Employee } from '../../../shared/models/employee.model';
 import { createAction, props } from '@ngrx/store';
 
 export const getEmployees = createAction(
@@ -16,7 +16,7 @@ export const loadEmployeesSuccess = createAction(
 
 export const loadEmployeesFailure = createAction(
   '[Employee Effects] Load Employees Failure',
-  props<{ error: any }>()
+  props<{ error: Error }>()
 );
 
 export const getEmployee = createAction(

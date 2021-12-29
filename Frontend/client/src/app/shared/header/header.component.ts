@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Link } from 'src/app/models/link.model';
+import { Link } from 'src/app/shared/models/link.model';
 
 @Component({
   selector: 'app-header',

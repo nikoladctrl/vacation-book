@@ -1,0 +1,12 @@
+ul {
+    list-style: none; 
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+}
+
+.card {
+    min-width: 200px;
+}

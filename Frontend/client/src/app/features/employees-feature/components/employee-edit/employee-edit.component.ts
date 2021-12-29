@@ -1,7 +1,7 @@
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Employee } from 'src/app/models/employee.model';
+import { Employee } from 'src/app/shared/models/employee.model';
 import { AppState } from 'src/app/store';
 import { Store } from '@ngrx/store';
 import * as fromEmployeeSelectors from '../../state/employee.selectors';
@@ -57,7 +57,6 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   }
 
   private validateHolidays(control: FormControl) {
-    console.log('Validate date');
   }
 
   private listenToForm() {
@@ -68,14 +67,12 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
       let endDate = this.editEmployeeForm.get('holidaysEndOn');
 
       if (startDate && !endDate) {
-        console.log('Change startDate detected!')
         endDate.setValidators([Validators.required, this.validateHolidays.bind(this)]);
         startDate.markAsTouched();
         endDate.setErrors([{ required : true }]);
         this.editEmployeeForm.updateValueAndValidity();
       }
       if (!startDate && endDate) {
-        console.log('Change endDate detected!')
         startDate.setValidators([Validators.required, this.validateHolidays.bind(this)]);
         endDate.markAsTouched();
         startDate.setErrors([{ required : true }]);
@@ -83,7 +80,6 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
       }
 
       if (startDate && endDate) {
-        console.log('Change both detected!')
         startDate.clearValidators();
         endDate.clearValidators();
         this.editEmployeeForm.updateValueAndValidity();

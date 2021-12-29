@@ -1,4 +1,4 @@
-import { FilterCompany } from './../../../../models/filter-company.model';
+import { FilterCompany } from '../../../../shared/models/filter-company.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';

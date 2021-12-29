@@ -1,0 +1,67 @@
+<ng-container *ngIf="company">
+    <div class="d-flex justify-content-center">
+        <div class="pb-3" *ngIf="noDeps; else template">
+            <small>You can't create employee without having at least one department!</small>
+        </div>
+        <ng-template #template>
+            <div>
+                <form [formGroup]="createEmployeeForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="firstName" 
+                                title="Name" 
+                                placeholder="First name"
+                                [ngClass]="{ 'red': createEmployeeForm.controls.firstName.invalid && (createEmployeeForm.controls.firstName.dirty || createEmployeeForm.controls.firstName.touched) }">
+                        <small *ngIf="createEmployeeForm.controls.firstName.invalid && (createEmployeeForm.controls.firstName.dirty || createEmployeeForm.controls.firstName.touched)">This field is required!</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="lastName" 
+                                title="Name" 
+                                placeholder="Last name"
+                                [ngClass]="{ 'red': createEmployeeForm.controls.lastName.invalid && (createEmployeeForm.controls.lastName.dirty || createEmployeeForm.controls.lastName.touched) }">
+                        <small *ngIf="createEmployeeForm.controls.lastName.invalid && (createEmployeeForm.controls.lastName.dirty || createEmployeeForm.controls.lastName.touched)">This field is required!</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                                type="date" 
+                                class="form-control"
+                                formControlName="birthDate" 
+                                title="Birth date" 
+                                placeholder="Birth date"
+                                [ngClass]="{ 'red': createEmployeeForm.controls.birthDate.invalid && (createEmployeeForm.controls.birthDate.dirty || createEmployeeForm.controls.birthDate.touched) }">
+                        <small *ngIf="createEmployeeForm.controls.birthDate.invalid && (createEmployeeForm.controls.birthDate.dirty || createEmployeeForm.controls.birthDate.touched)">This field is required!</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                                type="number" 
+                                class="form-control"
+                                formControlName="yearsOfService" 
+                                title="Years of service" 
+                                placeholder="Years of service"
+                                min="0"
+                                [ngClass]="{ 'red': createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched) }">
+                        <small *ngIf="createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched)">This field is required!</small>
+                        <small *ngIf="createEmployeeForm.controls.yearsOfService.errors.checkYears">Years are not valid!</small>
+                    </div>
+                    <div class="form-group">
+                        <select 
+                                class="form-control" 
+                                formControlName="departmentId" 
+                                title="Department">
+                            <option value="">Department name</option>
+                            <option [value]="department.id" *ngFor="let department of company.departments">{{ department.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" [disabled]="createEmployeeForm.invalid">Create Employee</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+</ng-container>

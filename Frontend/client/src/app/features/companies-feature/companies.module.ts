@@ -22,6 +22,7 @@ import { UnderscorePipe } from './resources/pipes/underscore.pipe';
 import { FilterCompaniesPipe } from './resources/pipes/filter-companies.pipe';
 import { CompanyDetailNewDepartmentComponent } from './components/company-detail-new-department/company-detail-new-department.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CompanyDetailNewEmployeeComponent } from './components/company-detail-new-employee/company-detail-new-employee.component';
 
 
 @NgModule({
@@ -39,17 +40,17 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UnderscorePipe,
     FilterCompaniesPipe,
     CompanyDetailNewDepartmentComponent,
+    CompanyDetailNewEmployeeComponent,
   ],
   imports: [
     CommonModule,
-    CompaniesRoutingModule, 
     RouterModule, 
+    CompaniesRoutingModule, 
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
     StoreModule.forFeature(fromCompany.companyFeatureKey, fromCompany.reducer), 
     EffectsModule.forFeature([CompanyEffects]),
-
   ]
 })
 export class CompaniesModule { }

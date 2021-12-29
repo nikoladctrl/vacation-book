@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Company } from 'src/app/models/company.model';
+import { Company } from 'src/app/shared/models/company.model';
 import { AppState } from 'src/app/store';
 import * as fromCompanySelectors from '../../state/company.selectors';
 

@@ -7,7 +7,6 @@ export class UnderscorePipe implements PipeTransform {
 
   transform(value: any): string {
     let newValue: string = "";
-    console.log('pipe')
     if (value === "LESS_THAN_ONE") {
       value = "Less than 1 year."
     }

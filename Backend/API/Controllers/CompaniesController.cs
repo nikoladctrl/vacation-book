@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BussinessLayer.Services.Companies;
 using Core.DTOs;
 using Core.DTOs.Companies;
+using Core.DTOs.Departments;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -67,6 +68,27 @@ namespace API.Controllers
             return (company == null) ?
                 NotFound() :
                 Ok(company);
+        }
+
+        [HttpPut("{id}/new-department")]
+        public async Task<ActionResult<CompanyDto>> CreateCompanyDepartment(int id, CreateDepartmentDto createDepartmentDto) 
+        {
+            if (id != createDepartmentDto.CompanyId) {
+                return BadRequest("Ids are not the same!");
+            }
+
+            var returnedCompany = await _companyService.GetCompany(createDepartmentDto.CompanyId);
+
+            if (returnedCompany == null) {
+                return BadRequest("Company doesn't exist!");
+            }
+
+            var company = await _companyService.CreateCompanyDepartment(createDepartmentDto);
+
+            return (company == null) ?
+                NotFound() :
+                Ok(company);
+
         }
     }
 }

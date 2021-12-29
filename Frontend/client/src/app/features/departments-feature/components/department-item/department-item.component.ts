@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Department } from 'src/app/models/department.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Department } from 'src/app/shared/models/department.model';
 
 @Component({
   selector: 'app-department-item',
@@ -9,5 +9,11 @@ import { Department } from 'src/app/models/department.model';
 export class DepartmentItemComponent {
 
   @Input() department: Department;
+  @Output() isDelete = new EventEmitter<number>(null);
+
+
+  onDelete(departmentId: number) {
+    this.isDelete.emit(departmentId);
+  }
   
 }

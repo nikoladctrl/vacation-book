@@ -8,4 +8,7 @@
     <div class="child">
         <p>{{ department.employees.length }}</p>
     </div>
+    <div class="child">
+        <i class="bi bi-trash" (click)="onDelete(department.id)"></i>
+    </div>
 </div>

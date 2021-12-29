@@ -1,7 +1,7 @@
-import { Department } from './../../../models/department.model';
+import { Department } from '../../../shared/models/department.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from 'src/app/models/company.model';
+import { Company } from 'src/app/shared/models/company.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class DepartmentService {
     return this.http.get<Department>(url);
   }
 
-  createDepartment(department: Department) {
+  createDepartment(department: { name: string, companyId: number }) {
     const url = `${environment.baseUrl}/departments`;
     return this.http.post<Department>(url, department);
   }

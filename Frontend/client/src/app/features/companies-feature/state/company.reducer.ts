@@ -1,7 +1,10 @@
+import { createDepartmentSuccess } from './../../departments-feature/state/department.actions';
 import { createReducer, on } from '@ngrx/store';
-import { Business } from 'src/app/models/business.model';
-import { Company } from 'src/app/models/company.model';
+import { Business } from 'src/app/shared/models/business.model';
+import { Company } from 'src/app/shared/models/company.model';
 import * as CompanyActions from './company.actions';
+import * as DepartmentActions from '../../departments-feature/state/department.actions';
+import { state } from '@angular/animations';
 
 export const companyFeatureKey = 'company';
 
@@ -50,7 +53,6 @@ export const reducer = createReducer(
       companies: [...state.companies, action.company]
     };
   }),
-  
   on(CompanyActions.editCompanySuccess, (state, action) => {
     
     let currCompanies = [...state.companies];
@@ -78,9 +80,16 @@ export const reducer = createReducer(
       companies: state.companies.filter(c => c.id !== action.id)
     };
   }),
+  on(CompanyActions.createCompanyDepartmentSuccess, (state, action) => {
+    return {
+      ...state,
+      currentCompany: {...state.currentCompany, departments: [...state.currentCompany.departments, action.department]}
+    };
+  }),
   on( CompanyActions.createCompanyFailure,
       CompanyActions.editCompanyFailure, 
-      CompanyActions.loadBusinessesFailure, (state, action) => {
+      CompanyActions.loadBusinessesFailure,
+      CompanyActions.createCompanyDepartmentFailure, (state, action) => {
     return {
       ...state,
       error: action.error
