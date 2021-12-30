@@ -1,0 +1,435 @@
+{
+  "version": 1,
+  "projects": {
+    "client": {
+      "projectType": "application",
+      "root": "apps/client",
+      "sourceRoot": "apps/client/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/client",
+            "index": "apps/client/src/index.html",
+            "main": "apps/client/src/main.ts",
+            "polyfills": "apps/client/src/polyfills.ts",
+            "tsConfig": "apps/client/tsconfig.app.json",
+            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+            "styles": ["apps/client/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/src/environments/environment.ts",
+                  "with": "apps/client/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "client:build:production"
+            },
+            "development": {
+              "browserTarget": "client:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/client/src/**/*.ts",
+              "apps/client/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/client"],
+          "options": {
+            "jestConfig": "apps/client/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "client-e2e": {
+      "root": "apps/client-e2e",
+      "sourceRoot": "apps/client-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-e2e/cypress.json",
+            "devServerTarget": "client:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["client"]
+    },
+    "companies-data": {
+      "projectType": "library",
+      "root": "libs/companies/data",
+      "sourceRoot": "libs/companies/data/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/companies/data"],
+          "options": {
+            "jestConfig": "libs/companies/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/companies/data/src/**/*.ts",
+              "libs/companies/data/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "companies-feature": {
+      "projectType": "library",
+      "root": "libs/companies/feature",
+      "sourceRoot": "libs/companies/feature/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/companies/feature"],
+          "options": {
+            "jestConfig": "libs/companies/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/companies/feature/src/**/*.ts",
+              "libs/companies/feature/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "companies-model": {
+      "projectType": "library",
+      "root": "libs/companies/model",
+      "sourceRoot": "libs/companies/model/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/companies/model"],
+          "options": {
+            "jestConfig": "libs/companies/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/companies/model/src/**/*.ts",
+              "libs/companies/model/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "companies-ui": {
+      "projectType": "library",
+      "root": "libs/companies/ui",
+      "sourceRoot": "libs/companies/ui/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/companies/ui"],
+          "options": {
+            "jestConfig": "libs/companies/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/companies/ui/src/**/*.ts",
+              "libs/companies/ui/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "departments-data": {
+      "projectType": "library",
+      "root": "libs/departments/data",
+      "sourceRoot": "libs/departments/data/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/departments/data"],
+          "options": {
+            "jestConfig": "libs/departments/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/departments/data/src/**/*.ts",
+              "libs/departments/data/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "departments-feature": {
+      "projectType": "library",
+      "root": "libs/departments/feature",
+      "sourceRoot": "libs/departments/feature/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/departments/feature"],
+          "options": {
+            "jestConfig": "libs/departments/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/departments/feature/src/**/*.ts",
+              "libs/departments/feature/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "departments-model": {
+      "projectType": "library",
+      "root": "libs/departments/model",
+      "sourceRoot": "libs/departments/model/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/departments/model"],
+          "options": {
+            "jestConfig": "libs/departments/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/departments/model/src/**/*.ts",
+              "libs/departments/model/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "departments-ui": {
+      "projectType": "library",
+      "root": "libs/departments/ui",
+      "sourceRoot": "libs/departments/ui/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/departments/ui"],
+          "options": {
+            "jestConfig": "libs/departments/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/departments/ui/src/**/*.ts",
+              "libs/departments/ui/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "employees-data": {
+      "projectType": "library",
+      "root": "libs/employees/data",
+      "sourceRoot": "libs/employees/data/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/employees/data"],
+          "options": {
+            "jestConfig": "libs/employees/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/employees/data/src/**/*.ts",
+              "libs/employees/data/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "employees-feature": {
+      "projectType": "library",
+      "root": "libs/employees/feature",
+      "sourceRoot": "libs/employees/feature/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/employees/feature"],
+          "options": {
+            "jestConfig": "libs/employees/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/employees/feature/src/**/*.ts",
+              "libs/employees/feature/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "employees-model": {
+      "projectType": "library",
+      "root": "libs/employees/model",
+      "sourceRoot": "libs/employees/model/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/employees/model"],
+          "options": {
+            "jestConfig": "libs/employees/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/employees/model/src/**/*.ts",
+              "libs/employees/model/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "employees-ui": {
+      "projectType": "library",
+      "root": "libs/employees/ui",
+      "sourceRoot": "libs/employees/ui/src",
+      "prefix": "vacation-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/employees/ui"],
+          "options": {
+            "jestConfig": "libs/employees/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/employees/ui/src/**/*.ts",
+              "libs/employees/ui/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    }
+  }
+}

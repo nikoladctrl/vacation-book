@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@vacation-book/companies/data": ["libs/companies/data/src/index.ts"],
+      "@vacation-book/companies/feature": [
+        "libs/companies/feature/src/index.ts"
+      ],
+      "@vacation-book/companies/model": ["libs/companies/model/src/index.ts"],
+      "@vacation-book/companies/ui": ["libs/companies/ui/src/index.ts"],
+      "@vacation-book/departments/data": ["libs/departments/data/src/index.ts"],
+      "@vacation-book/departments/feature": [
+        "libs/departments/feature/src/index.ts"
+      ],
+      "@vacation-book/departments/model": [
+        "libs/departments/model/src/index.ts"
+      ],
+      "@vacation-book/departments/ui": ["libs/departments/ui/src/index.ts"],
+      "@vacation-book/employees/data": ["libs/employees/data/src/index.ts"],
+      "@vacation-book/employees/feature": [
+        "libs/employees/feature/src/index.ts"
+      ],
+      "@vacation-book/employees/model": ["libs/employees/model/src/index.ts"],
+      "@vacation-book/employees/ui": ["libs/employees/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
