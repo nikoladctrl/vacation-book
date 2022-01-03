@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgControlStatus } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -41,19 +41,26 @@ export class CompanyDetailNewEmployeeComponent implements OnInit, OnDestroy {
     return new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      birthDate: new FormControl('', [Validators.required]),
-      yearsOfService: new FormControl('', [Validators.required]),
+      birthDate: new FormControl('', [Validators.required, this.validateBirth.bind(this)]),
+      yearsOfService: new FormControl('', [Validators.required, this.validateYears.bind(this)]),
       departmentId: new FormControl(''),
     });
   }
 
-  // private validateYears(control: FormControl) {
-  //   console.log(new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18, control.value)
-  //   if (control.dirty && control.value > (new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18)) {
-  //     return { 'checkYears' : { invalidYear : true }};
-  //   }
-  //   return null;
-  // }
+  private validateBirth(control: FormControl) {
+    if (control.dirty && (new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value) < 18) {
+      return { checkYears : { invalidYear : true }};
+    }
+    return null;
+  }
+
+  private validateYears(control: FormControl) {
+    console.log(new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18, control.value)
+    if ((control.dirty && control.value > (new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18)) || (control.value < 0 && control.dirty)) {
+      return { checkYears : { invalidYear : true }};
+    }
+    return null;
+  }
 
   listenToForm() {
     this.subscriptions.push(

@@ -14,7 +14,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  employees: null,
+  employees: [],
   currentEmployee: null,
   loadStatus: 'NOT_LOADED',
   error: null

@@ -17,7 +17,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  companies: null,
+  companies: [],
   currentCompany: null,
   loadStatus: 'NOT_LOADED',
   error: null,
@@ -81,10 +81,29 @@ export const reducer = createReducer(
     };
   }),
   on(CompanyActions.createCompanyDepartmentSuccess, (state, action) => {
+    let newCurrCompany = {...state.currentCompany};
+    newCurrCompany.departments = [...state.currentCompany.departments, action.department];
+    let refreshCompanies = [...state.companies];
+    refreshCompanies[refreshCompanies.findIndex(c => c.id === action.department.company.id)] = newCurrCompany;
+    
     return {
       ...state,
-      currentCompany: {...state.currentCompany, departments: [...state.currentCompany.departments, action.department]}
+      currentCompany: newCurrCompany,
+      companies: refreshCompanies
     };
+  }),
+  on(DepartmentActions.deleteDepartment, (state, action) => {
+    if (state.loadStatus === 'LOADED') {
+      let newCompanies = [...state.companies];
+      let newCompany = {...newCompanies[newCompanies.findIndex(c => c.departments.find(d => d.id === action.id))]};
+      newCompany.departments = newCompany.departments.filter(d => d.id !== action.id);
+      newCompanies[newCompanies.findIndex(c => c.id === newCompany.id)] = newCompany;
+      
+      return {
+        ...state,
+        companies: [...newCompanies]
+      };
+    }
   }),
   on( CompanyActions.createCompanyFailure,
       CompanyActions.editCompanyFailure, 

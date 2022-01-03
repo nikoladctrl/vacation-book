@@ -111,7 +111,7 @@ export const getBusinesses = createAction(
 
 /** Calling from Company Detail New Component */
 export const createCompanyDepartment = createAction(
-  '[Company Detail New Component] Create Company Department',
+  '[Company Detail New Department Component] Create Company Department',
   props<{ department: { name: string, companyId: number} }>()
 );
 

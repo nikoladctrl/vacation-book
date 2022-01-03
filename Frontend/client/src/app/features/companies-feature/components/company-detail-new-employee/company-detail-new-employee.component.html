@@ -46,7 +46,7 @@
                                 min="0"
                                 [ngClass]="{ 'red': createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched) }">
                         <small *ngIf="createEmployeeForm.controls.yearsOfService.invalid && (createEmployeeForm.controls.yearsOfService.dirty || createEmployeeForm.controls.yearsOfService.touched)">This field is required!</small>
-                        <small *ngIf="createEmployeeForm.controls.yearsOfService.errors.checkYears">Years are not valid!</small>
+                        <small *ngIf="createEmployeeForm.controls.yearsOfService.errors?.checkYears">Years are not valid!</small>
                     </div>
                     <div class="form-group">
                         <select 

@@ -13,7 +13,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  departments: null,
+  departments: [],
   currentDepartment: null,
   loadStatus: 'NOT_LOADED',
   error: null
@@ -51,7 +51,7 @@ export const reducer = createReducer(
   on(DepartmentActions.createDepartmentSuccess, CompanyActions.createCompanyDepartmentSuccess, (state, action) => {
     return {
       ...state,
-      departments: [...state.departments, {...action.department}]
+      departments: [...state.departments, action.department]
     };
   }),
   on(DepartmentActions.createDepartmentFailure, (state, action) => {
@@ -80,7 +80,7 @@ export const reducer = createReducer(
   on(DepartmentActions.deleteDepartment, (state, action) => {
     return {
       ...state,
-      departments: state.departments.filter(d => d.id !== action.id)
-    }
+      departments: [...state.departments.filter(d => d.id !== action.id)]
+    };
   })
 );
