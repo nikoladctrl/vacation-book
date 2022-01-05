@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Company } from '../../model/company.model';
 
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.css']
+  styleUrls: ['./company-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyListComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  @Input() companies: Company[];
 }

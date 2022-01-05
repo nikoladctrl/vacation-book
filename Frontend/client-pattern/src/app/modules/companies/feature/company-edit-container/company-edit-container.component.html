@@ -1,1 +1,3 @@
-<p>company-edit-container works!</p>
+<ng-container *ngIf="company$ | async as company">
+    <app-company-edit [company]="company" (outputCompany)="onOutputCompany($event)"></app-company-edit>
+</ng-container>

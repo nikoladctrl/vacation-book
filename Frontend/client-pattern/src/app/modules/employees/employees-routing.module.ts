@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeDetailComponent } from '../empoyees/ui/employee-detail/employee-detail.component';
-import { EmployeeEditComponent } from '../empoyees/ui/employee-edit/employee-edit.component';
-import { EmployeeNewComponent } from '../empoyees/ui/employee-new/employee-new.component';
-import { EmployeeListComponent } from './ui/employee-list/employee-list.component';
+import { EmployeeDetailContainerComponent } from './feature/employee-detail-container/employee-detail-container.component';
+import { EmployeeEditContainerComponent } from './feature/employee-edit-container/employee-edit-container.component';
+import { EmployeeListContainerComponent } from './feature/employee-list-container/employee-list-container.component';
+import { EmployeeNewContainerComponent } from './feature/employee-new-container/employee-new-container.component';
 
 const routes: Routes = [
-  { path: '', component: EmployeeListComponent },
-  { path: 'new', component: EmployeeNewComponent },
-  { path: ':id', component: EmployeeDetailComponent },
-  { path: ':id/edit', component: EmployeeEditComponent },
+  { path: '', component: EmployeeListContainerComponent },
+  { path: 'new', component: EmployeeNewContainerComponent },
+  { path: ':id', component: EmployeeDetailContainerComponent, 
+    children: [
+      { path: 'edit', component: EmployeeEditContainerComponent },
+    ]
+  },
 ];
 
 @NgModule({

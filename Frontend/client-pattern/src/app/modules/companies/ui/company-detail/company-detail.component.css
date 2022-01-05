@@ -1,0 +1,24 @@
+.detail-container {
+    min-height: 400px;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.headline div {
+    flex: 1;
+}
+
+.small {
+    width: 150px;
+    height: 150px;
+}
+
+hr {
+    width: 97%;
+}
+
+.info div {
+    flex: 1;
+}

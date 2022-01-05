@@ -12,15 +12,15 @@ import * as fromEmployee from '../modules/employees/data/employee.reducer';
 
 
 export interface AppState {
-  [fromCompany.companyFeatureKey]: fromCompany.State;
-  [fromDepartment.departmentFeatureKey]: fromDepartment.State;
-  [fromEmployee.employeeFeatureKey]: fromEmployee.State;
+  [fromCompany.companiesFeatureKey]: fromCompany.State;
+  [fromDepartment.departmentsFeatureKey]: fromDepartment.State;
+  [fromEmployee.employeesFeatureKey]: fromEmployee.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  [fromCompany.companyFeatureKey]: fromCompany.reducer,
-  [fromDepartment.departmentFeatureKey]: fromDepartment.reducer,
-  [fromEmployee.employeeFeatureKey]: fromEmployee.reducer,
+  [fromCompany.companiesFeatureKey]: fromCompany.reducer,
+  [fromDepartment.departmentsFeatureKey]: fromDepartment.reducer,
+  [fromEmployee.employeesFeatureKey]: fromEmployee.reducer,
 };
 
 

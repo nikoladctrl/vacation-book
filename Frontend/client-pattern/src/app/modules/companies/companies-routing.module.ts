@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompanyDetailComponent } from './ui/company-detail/company-detail.component';
-import { CompanyEditComponent } from './ui/company-edit/company-edit.component';
-import { CompanyListComponent } from './ui/company-list/company-list.component';
-import { CompanyNewComponent } from './ui/company-new/company-new.component';
+import { CompanyDetailContainerComponent } from './feature/company-detail-container/company-detail-container.component';
+import { CompanyEditContainerComponent } from './feature/company-edit-container/company-edit-container.component';
+import { CompanyListContainerComponent } from './feature/company-list-container/company-list-container.component';
+import { CompanyNewContainerComponent } from './feature/company-new-container/company-new-container.component';
+import { CompaniesResolver } from './feature/resolvers/companies.resolver';
+import { CompanyResolver } from './feature/resolvers/company.resolver';
 
 const routes: Routes = [
-  { path: '', component: CompanyListComponent },
-  { path: 'new', component: CompanyNewComponent },
-  { path: 'edit', component: CompanyEditComponent },
-  { path: 'edit', component: CompanyDetailComponent, 
+  { path: '', component: CompanyListContainerComponent, resolve: { companies: CompaniesResolver } },
+  { path: 'new', component: CompanyNewContainerComponent },
+  { path: ':id', component: CompanyDetailContainerComponent, resolve: { company: CompanyResolver },
     children: [
-      { path: 'departments', loadChildren: () => import('../departments/departments.module').then(m => m.DepartmentsModule) },
-      { path: 'employees', loadChildren: () => import('../employees/employees.module').then(m => m.EmployeesModule) },
+      { path: 'edit', component: CompanyEditContainerComponent },
     ]
   }
 ];

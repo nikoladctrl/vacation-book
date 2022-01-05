@@ -1,30 +1,21 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
-
-import * as DepartmentActions from './department.actions';
+import { Actions, createEffect } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { DepartmentService } from '../feature/services/department.service';
 
 
 
 @Injectable()
 export class DepartmentEffects {
 
-  createDepartments$ = createEffect(() => {
-    return this.actions$.pipe( 
-
-      ofType(DepartmentActions.createDepartments),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => DepartmentActions.createDepartmentsSuccess({ data })),
-          catchError(error => of(DepartmentActions.createDepartmentsFailure({ error }))))
-      )
-    );
-  });
 
 
-
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions, 
+    private store: Store<AppState>, 
+    private departmentService: DepartmentService,
+    private router: Router) { } 
 
 }

@@ -1,1 +1,3 @@
-<p>company-new-container works!</p>
+<ng-container *ngIf="businesses$ | async as businesses">
+    <app-company-new [businesses]="businesses" (outputCompany)="onOutputCompany($event)"></app-company-new>
+</ng-container>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
-import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 
 
 
@@ -13,7 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     NgxPaginationModule,
-    NgxBootstrapIconsModule.pick({})
+    // NgxBootstrapIconsModule.pick({})
   ],
   exports: [
     HeaderComponent

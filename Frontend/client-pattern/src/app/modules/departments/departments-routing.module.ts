@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DepartmentDetailComponent } from './ui/department-detail/department-detail.component';
-import { DepartmentEditComponent } from './ui/department-edit/department-edit.component';
-import { DepartmentListComponent } from './ui/department-list/department-list.component';
+import { DepartmentDetailContainerComponent } from './feature/department-detail-container/department-detail-container.component';
+import { DepartmentEditContainerComponent } from './feature/department-edit-container/department-edit-container.component';
+import { DepartmentListContainerComponent } from './feature/department-list-container/department-list-container.component';
 
 const routes: Routes = [
-  { path: '', component: DepartmentListComponent },
-  { path: 'new', component: DepartmentDetailComponent },
-  { path: ':id', component: DepartmentDetailComponent },
-  { path: ':id/edit', component: DepartmentEditComponent },
+  { path: '', component: DepartmentListContainerComponent },
+  { path: 'new', component: DepartmentDetailContainerComponent },
+  { path: ':id', component: DepartmentDetailContainerComponent },
+  { path: ':id/edit', component: DepartmentEditContainerComponent },
 ];
 
 @NgModule({
