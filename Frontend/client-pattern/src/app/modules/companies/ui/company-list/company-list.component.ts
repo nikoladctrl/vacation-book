@@ -10,4 +10,5 @@ import { Company } from '../../model/company.model';
 export class CompanyListComponent {
 
   @Input() companies: Company[];
+  
 }

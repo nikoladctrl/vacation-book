@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+
 import { Employee } from '../model/employee.model';
-
-
 
 export const loadEmployees = createAction(
   '[Employee/API] Load Employees', 

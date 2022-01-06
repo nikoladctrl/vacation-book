@@ -1,22 +1,18 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import * as DepartmentActions from './department.actions';
 import { Department } from '../model/department.model';
+import * as DepartmentActions from './department.actions';
 
 export const departmentsFeatureKey = 'departments';
 
 export interface State extends EntityState<Department> {
-  currentDepartment: Department;
-  loadStatus: 'NOT_LOADED' | 'LOADING' | 'LOADED';
-  error: Error;
+  // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Department> = createEntityAdapter<Department>();
 
 export const initialState: State = adapter.getInitialState({
-  currentDepartment: null,
-  loadStatus: 'NOT_LOADED',
-  error: null
+  // additional entity state properties
 });
 
 export const reducer = createReducer(

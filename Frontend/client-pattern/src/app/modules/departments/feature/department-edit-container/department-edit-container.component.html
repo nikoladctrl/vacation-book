@@ -1,1 +1,3 @@
-<p>department-edit-container works!</p>
+<ng-container *ngIf="department$ | async as department">
+    <app-department-edit [department]="department" (outputDepartment)="onOutputDepartment($event)"></app-department-edit>
+</ng-container>

@@ -1,1 +1,3 @@
-<p>employee-list-container works!</p>
+<ng-container *ngIf="employees$ | async as employees">
+    <app-employee-list [employees]="employees"></app-employee-list>
+</ng-container>

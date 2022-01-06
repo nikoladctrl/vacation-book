@@ -1,1 +1,7 @@
-<p>department-list works!</p>
+<ng-container *ngIf="departments">
+    <ul>
+        <li *ngFor="let department of departments">
+            <app-department-item [department]="department"></app-department-item>
+        </li>
+    </ul>
+</ng-container>

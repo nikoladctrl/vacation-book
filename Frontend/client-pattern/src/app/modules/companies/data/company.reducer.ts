@@ -1,27 +1,18 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
-import * as CompanyActions from './company.actions';
 import { Company } from '../model/company.model';
-import { Business } from '../model/business.model';
+import * as CompanyActions from './company.actions';
 
 export const companiesFeatureKey = 'companies';
 
 export interface State extends EntityState<Company> {
-  currentCompany: Company;
-  loadStatus: 'NOT_LOADED' | 'LOADING' | 'LOADED';
-  businesses: Business[];
-  error: Error;
+  // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Company> = createEntityAdapter<Company>();
 
 export const initialState: State = adapter.getInitialState({
-  currentCompany: null,
-  loadStatus: 'NOT_LOADED',
-  businesses: [],
-  error: null,
-
+  // additional entity state properties
 });
 
 export const reducer = createReducer(
@@ -50,18 +41,8 @@ export const reducer = createReducer(
   on(CompanyActions.deleteCompanys,
     (state, action) => adapter.removeMany(action.ids, state)
   ),
-  on(CompanyActions.loadCompaniesSuccess,
-    (state, action) => adapter.setAll(action.companies, state)
-  ),
-  on(
-    CompanyActions.loadCompaniesFailure, 
-    CompanyActions.loadCompanyFailure, 
-    CompanyActions.addCompanyFailure, (state, action) => {
-      return {
-        ...state,
-        error: action.error
-      };
-    }
+  on(CompanyActions.loadCompanys,
+    (state, action) => adapter.setAll(action.companys, state)
   ),
   on(CompanyActions.clearCompanys,
     state => adapter.removeAll(state)

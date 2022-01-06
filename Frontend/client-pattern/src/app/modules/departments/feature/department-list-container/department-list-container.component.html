@@ -1,1 +1,3 @@
-<p>department-list-container works!</p>
+<ng-container *ngIf="departments$ | async as departments">
+    <app-department-list [departments]="departments"></app-department-list>
+</ng-container>

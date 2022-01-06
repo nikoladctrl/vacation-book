@@ -8,11 +8,8 @@ import { EmployeeNewContainerComponent } from './feature/employee-new-container/
 const routes: Routes = [
   { path: '', component: EmployeeListContainerComponent },
   { path: 'new', component: EmployeeNewContainerComponent },
-  { path: ':id', component: EmployeeDetailContainerComponent, 
-    children: [
-      { path: 'edit', component: EmployeeEditContainerComponent },
-    ]
-  },
+  { path: ':id', component: EmployeeDetailContainerComponent },
+  { path: ':id/edit', component: EmployeeEditContainerComponent },
 ];
 
 @NgModule({

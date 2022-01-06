@@ -1,3 +1,1 @@
-<ng-container *ngIf="businesses$ | async as businesses">
-    <app-company-new [businesses]="businesses" (outputCompany)="onOutputCompany($event)"></app-company-new>
-</ng-container>
+<app-company-new (create)="onCreate($event)"></app-company-new>

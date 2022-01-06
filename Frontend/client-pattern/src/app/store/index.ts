@@ -12,12 +12,14 @@ import * as fromEmployee from '../modules/employees/data/employee.reducer';
 
 
 export interface AppState {
+
   [fromCompany.companiesFeatureKey]: fromCompany.State;
   [fromDepartment.departmentsFeatureKey]: fromDepartment.State;
   [fromEmployee.employeesFeatureKey]: fromEmployee.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
+
   [fromCompany.companiesFeatureKey]: fromCompany.reducer,
   [fromDepartment.departmentsFeatureKey]: fromDepartment.reducer,
   [fromEmployee.employeesFeatureKey]: fromEmployee.reducer,

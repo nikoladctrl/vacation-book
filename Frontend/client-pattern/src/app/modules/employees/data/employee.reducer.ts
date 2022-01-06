@@ -1,23 +1,18 @@
-import { Employee } from './../model/employee.model';
-
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Employee } from '../model/employee.model';
 import * as EmployeeActions from './employee.actions';
 
 export const employeesFeatureKey = 'employees';
 
 export interface State extends EntityState<Employee> {
-  currentEmployee: Employee;
-  loadStatus: 'NOT_LOADED' | 'LOADING' | 'LOADED';
-  error: Error;
+  // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Employee> = createEntityAdapter<Employee>();
 
 export const initialState: State = adapter.getInitialState({
-  currentEmployee: null,
-  loadStatus: 'NOT_LOADED',
-  error: null
+  // additional entity state properties
 });
 
 export const reducer = createReducer(

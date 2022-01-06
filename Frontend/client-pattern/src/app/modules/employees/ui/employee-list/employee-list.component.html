@@ -1,0 +1,7 @@
+<ng-container *ngIf="employees">
+    <ul>
+        <li *ngFor="let employee of employees">
+            <app-employee-item [employee]="employee"></app-employee-item>
+        </li>
+    </ul>
+</ng-container>

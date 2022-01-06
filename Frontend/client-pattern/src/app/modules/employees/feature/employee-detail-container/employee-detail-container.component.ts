@@ -1,10 +1,8 @@
-import { Employee } from './../../model/employee.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
-
-import * as fromEmployeeSelectors from '../../data/employee.selectors';
+import { Employee } from '../../model/employee.model';
 
 @Component({
   selector: 'app-employee-detail-container',
@@ -18,7 +16,6 @@ export class EmployeeDetailContainerComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.employee$ = this.store.select(fromEmployeeSelectors.selectCurrentEmployee);
   }
 
 }

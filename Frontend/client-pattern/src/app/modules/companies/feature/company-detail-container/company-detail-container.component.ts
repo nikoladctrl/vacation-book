@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+
 import { Company } from '../../model/company.model';
 
 import { Store } from '@ngrx/store';
@@ -18,7 +19,7 @@ export class CompanyDetailContainerComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.company$ = this.store.select(fromCompanySelectors.selectCurrentCompany);
+    // this.company$ = this.store.select(fromCompanySelectors.selectCurrentCompany);
   }
 
 }

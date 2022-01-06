@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.DTOs.Departments;
 using Core.Entities;
 using EFCore.Context;
 using Microsoft.EntityFrameworkCore;
@@ -41,10 +42,11 @@ namespace EFCore.Repositories.Companies
         
         public async Task<List<Company>> GetCompanies()
         {
-            return await _context.Companies
+            return await _context.Companies.AsQueryable()
                                     .Include(c => c.Business)
-                                    .Include(c => c.Departments).ThenInclude(d => d.Employees)
-                                    .Include(c => c.Employees).ToListAsync();
+                                    .Include(c => c.Departments)
+                                    .Include(c => c.Employees)
+                                    .ToListAsync();
         }
 
         public async Task<Company> GetCompany(int id)

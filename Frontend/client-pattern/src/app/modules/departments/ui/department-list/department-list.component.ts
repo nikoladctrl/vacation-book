@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Department } from '../../model/department.model';
 
 @Component({
   selector: 'app-department-list',
   templateUrl: './department-list.component.html',
-  styleUrls: ['./department-list.component.css']
+  styleUrls: ['./department-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DepartmentListComponent implements OnInit {
+export class DepartmentListComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input() departments: Department[];
 
 }

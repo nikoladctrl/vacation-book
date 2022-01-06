@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+
 import { Department } from '../model/department.model';
-
-
 
 export const loadDepartments = createAction(
   '[Department/API] Load Departments', 
@@ -41,7 +40,7 @@ export const updateDepartments = createAction(
 
 export const deleteDepartment = createAction(
   '[Department/API] Delete Department',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteDepartments = createAction(

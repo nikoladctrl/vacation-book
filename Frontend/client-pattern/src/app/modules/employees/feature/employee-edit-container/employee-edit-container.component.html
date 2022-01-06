@@ -1,1 +1,3 @@
-<p>employee-edit-container works!</p>
+<ng-container *ngIf="employee$ | async as employee">
+    <app-employee-edit [employee]="employee" (outputEmployee)="onChange($event)"></app-employee-edit>
+</ng-container>

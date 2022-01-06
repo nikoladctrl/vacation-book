@@ -1,4 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { Employee } from '../../model/employee.model';
+import * as fromEmployeeSelectors from '../../data/employee.selectors';
 
 @Component({
   selector: 'app-employee-list-container',
@@ -7,9 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeListContainerComponent implements OnInit {
 
-  constructor() { }
+  employees$: Observable<Employee[]>;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    // this.employees$ = this.store.select(fromEmployeeSelectors.getEmployees);
   }
 
 }

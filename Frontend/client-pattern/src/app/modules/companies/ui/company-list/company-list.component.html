@@ -1,1 +1,7 @@
-<p>company-list works!</p>
+<ng-container *ngIf="companies">
+    <ul>
+        <li *ngFor="let company of companies">
+            <app-company-item [company]></app-company-item>
+        </li>
+    </ul>
+</ng-container>

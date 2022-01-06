@@ -1,3 +1,3 @@
-<ng-container *ngIf="company$ | async as company">
-    <app-company-edit [company]="company" (outputCompany)="onOutputCompany($event)"></app-company-edit>
+<ng-container *ngIf="vm$ | async as vm">
+    <app-company-edit [viewModel]="vm" (outputCompany)="onOutputCompany($event)"></app-company-edit>
 </ng-container>

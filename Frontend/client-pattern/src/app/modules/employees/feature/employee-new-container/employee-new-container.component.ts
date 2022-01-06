@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { Employee } from '../../model/employee.model';
+
+import * as EmployeeActions from '../../data/employee.actions';
 
 @Component({
   selector: 'app-employee-new-container',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeNewContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+  }
+
+  onCreate(employee: Employee) {
+    // this.store.dispatch(EmployeeActions.addEmployee({ employee: employee }))
   }
 
 }

@@ -1,4 +1,11 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+
+
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import * as fromDepartmentSelectors from '../../data/department.selectors';
+import { Department } from '../../model/department.model';
 
 @Component({
   selector: 'app-department-list-container',
@@ -7,9 +14,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentListContainerComponent implements OnInit {
 
-  constructor() { }
+  departments$ : Observable<Department[]>;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    // this.departments$ = this.store.select(fromDepartmentSelectors.selectAllDepartments);
   }
 
 }
