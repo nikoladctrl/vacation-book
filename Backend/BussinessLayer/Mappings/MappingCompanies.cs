@@ -17,8 +17,10 @@ namespace BussinessLayer.Mappings
 
             CreateMap<UpdateCompanyDto, Company>();
             
-            CreateMap<Company, CompanyDto>()
-                .ForMember(dest => dest.NumberOfDepartments, opt => opt.MapFrom(src => src.Departments.Count));
+            CreateMap<Company, CompanyDto>();
+
+            CreateMap<Company, int>()
+                .ConvertUsing(src => src.Id);
         }
     }
 }

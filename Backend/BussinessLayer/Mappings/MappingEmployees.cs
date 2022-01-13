@@ -26,6 +26,9 @@ namespace BussinessLayer.Mappings
                 .ForMember(dest => dest.OnVacation, opt => opt.MapFrom(src => (src.HolidaysStartOn.HasValue && src.HolidaysEndOn.HasValue) ? IsOnVacation(src.HolidaysStartOn.Value, src.HolidaysEndOn.Value) : false))
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.LastName + " " + src.FirstName))
                 .ForMember(dest => dest.DaysLeft, opt => opt.MapFrom(src => CountDaysLeft(src)));
+
+            CreateMap<Employee, int>()
+                .ConvertUsing(src => src.Id);
         }
 
         private int CountYearsOfService(int yearsOfService) {

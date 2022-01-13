@@ -19,6 +19,8 @@ namespace BussinessLayer.Mappings
             CreateMap<CreateBusinessDto, Business>();
             CreateMap<UpdateBusinessDto, Business>();
             CreateMap<Business, BusinessDto>().ReverseMap();
+            CreateMap<Business, int>()
+                .ConvertUsing(src => src.Id);
         }
     }
 }

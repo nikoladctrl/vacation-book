@@ -19,10 +19,10 @@ namespace Core.DTOs.Companies
         
         public string Country { get; set; }
 
-        public int NumberOfDepartments { get; set; }
         public string Image { get; set; }
         
-        public ICollection<DepartmentDto> Departments { get; set; } = new List<DepartmentDto>();
-        public ICollection<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
+        public List<int> Departments { get; set; }
+        
+        public List<int> Employees { get; set; }
     }
 }

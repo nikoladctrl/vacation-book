@@ -13,7 +13,6 @@ namespace Core.DTOs.Departments
         public string Name { get; set; }
         public int CompanyId { get; set; }
         public CompanyDto Company { get; set; }
-        public int NumberOfEmployees { get; set; }
-        public ICollection<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
+        public List<int> Employees { get; set; }
     }
 }

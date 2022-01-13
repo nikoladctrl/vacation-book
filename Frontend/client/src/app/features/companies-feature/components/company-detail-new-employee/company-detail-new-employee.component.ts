@@ -55,7 +55,7 @@ export class CompanyDetailNewEmployeeComponent implements OnInit, OnDestroy {
   }
 
   private validateYears(control: FormControl) {
-    console.log(new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18, control.value)
+    // console.log(new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18, control.value)
     if ((control.dirty && control.value > (new Date().getFullYear() - this.createEmployeeForm.get('birthDate').value - 18)) || (control.value < 0 && control.dirty)) {
       return { checkYears : { invalidYear : true }};
     }
